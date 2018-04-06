@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 text-center">
+    <h1 class="text-center">Registrarse</h1>
+    <br />
+    <img class="img-circle" alt="SignUp Image" src="assets/images/login.png">
+    <div ng-if="error"><hr></div>
+    <div class="alert alert-danger" ng-if="error">
+      {{error}}
+    </div>
+    <form ng-show="form">
+      <div class="form-group">
+        <hr>
+        <input style="margin-bottom: 5px;" type="text" name="nick" class="form-control text-center" placeholder="Nombre de usuario" ng-model="user.nick" required autofocus>
+        <input style="margin-bottom: 5px;" type="text" name="name" class="form-control text-center" placeholder="Nombre (Opcional)" ng-model="user.name">
+        <input style="margin-bottom: 5px;" type="text" name="lastName" class="form-control text-center" placeholder="Apellido (Opcional)" ng-model="user.lastName">
+        <br>
+        <input style="margin-bottom: 5px;" type="email" name="email" class="form-control text-center" placeholder="Correo Electrónico" ng-model="user.email" required>
+        <input style="margin-bottom: 5px;" type="password" name="password" class="form-control text-center" placeholder="Contraseña" ng-model="user.password" pattern=".{8,}" required>
+        <span class="help-block h6">La contraseña debe tener por lo menos 8 carácteres.</span>
+      </div>
+      <div class="form-group">
+        <hr>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signup()">Registrar</button>
+        <p class="h5">Ya tienes cuenta? <a ng-click="loginC()">Iniciar Sesión</a></p>
+      </div>
+    </form>
+    <div ng-if="success"><hr></div>
+    <div class="alert alert-success" ng-if="success">
+      <p class="h5">{{success}}</p>
+      <hr>
+      <a ng-click="loginC()">Iniciar Sesión</a></p>
+    </div>
+  </div>
+</div>

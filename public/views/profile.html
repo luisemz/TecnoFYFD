@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 text-center">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h1>Perfil de Usuario</h1></div>
+      <div class="panel-body">
+        <img class="img-circle" alt="Profile Image" src="assets/images/profile.png" height="200" width="200">
+        <hr>
+        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+          <p>Ususario:</p>
+          <p class="text-uppercase text-primary">{{nick}}</p>
+          <p>Nombre:</p>
+          <p class="text-uppercase text-primary">{{name}}</p>
+          <p>Apellido:</p>
+          <p class="text-uppercase text-primary">{{lastName}}</p>
+          <p>Correo:</p>
+          <p class="text-uppercase text-primary">{{email}}</p>
+          <p>Fecha de Registro:</p>
+          <p class="text-uppercase text-primary">{{registeredDate | date:'yyyy-MM-dd HH:mm Z'}}</p>
+          <p>Último Inicio de Sesión:</p>
+          <p class="text-uppercase text-primary">{{lastlogin | date:'yyyy-MM-dd HH:mm Z'}}</p>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <div class="row" ng-show="!admin">
+          <div class="row" ng-show="changePassword">
+            <div class="col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                <div class="col-md-6">
+                  <a ng-click="form = !form" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Editar Perfil</a>
+                </div>
+                <div class="col-md-6">
+                  <a ng-click="deleteAccount(user)" class="btn btn-md btn-danger btn-block" role="button" style="margin-top:5px;">Eliminar Perfil</a>
+                </div>
+            </div>
+          </div>
+          <div class="row" ng-show="!changePassword">
+            <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+              <a ng-click="deleteAccount(user)" class="btn btn-md btn-danger btn-block" role="button">Eliminar</a>
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-show="admin">
+          <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+            <a ng-click="form = !form" class="btn btn-md btn-primary btn-block" role="button">Cambiar Contraseña</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 text-center">
+    <div class="alert alert-danger" ng-if="error">
+      <p class="h5">{{error}}</p>
+    </div>
+    <form ng-show="form">
+      <p class="h5">Complete la siguiente información para cambiar la contraseña</p>
+      <hr>
+      <input type="password" name="password" class="form-control text-center" placeholder="Contraseña Actual" ng-model="user.pass" required autofocus>
+      <hr>
+      <span class="help-block h6">La contraseña debe tener por lo menos 8 carácteres.</span>
+      <input type="password" name="newPassword" class="form-control text-center" placeholder="Nueva Contraseña" ng-model="user.newPass" pattern=".{8,}" required>
+      <br>
+      <input type="password" name="confirmNewPassword" class="form-control text-center" placeholder="Confirmar Nueva Contraseña" ng-model="user.confirmNewPass" pattern=".{8,}" required>
+      <hr>
+      <button class="btn btn-md btn-primary" type="submit" ng-click="change()">Cambiar Contraseña</button>
+      <p class="h6">Olvidó su contraseña? <a ng-click="restore()">Restaurar Contraseña</a></p>
+    </form>
+    <div ng-show="success"><hr></div>
+    <div class="alert alert-success" ng-show="success">
+      <p class="h5">{{msg}}</p>
+      <hr>
+      <a ng-click="success = !success" class="btn btn-sm btn-success btn-block" role="button">Aceptar</a>
+    </div>
+    <div class="alert alert-success" ng-show="success1">
+      <p class="h5">{{sent}}</p>
+      <hr>
+      <a ng-click="success1 = !success1" class="btn btn-sm btn-success btn-block" role="button">Aceptar</a>
+    </div>
+  </div>
+</div>

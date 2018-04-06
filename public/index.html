@@ -1,0 +1,55 @@
+<!doctype html>
+<html ng-app="app" lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content=" width=device , initial-scale=1"/>
+    <base href="/"/>
+
+    <link rel="icon" href="assets/images/tecno.png">
+    <title>Tecno Fast & Fresh Food</title>
+
+    <link rel="stylesheet" href="styles/bootstrap.css">
+  </head>
+  <body>
+    <div ui-view="navbar" class="navbar-fixed-top"></div>
+
+    <div class="container">
+      <br><br><br>
+      <div ui-view="start"></div>
+      <div ui-view="login"></div>
+      <div ui-view="signup"></div>
+      <div ui-view="signupVerify"></div>
+      <div ui-view="home"></div>
+      <div ui-view="users"></div>
+      <div ui-view="unity"></div>
+      <div ui-view="profile"></div>
+      <div ui-view="map"></div>
+      <div ui-view="ssr"></div>
+      <div ui-view="adminMap"></div>
+      <div ui-view="adminSsr"></div>
+      <br><br><br>
+    </div>
+
+    <div class="navbar">
+      <div class="col-md-12 footer">
+        <div class="col-md-12 text-center">
+          <p class="text-muted">Tecno - Fast & Fresh Food Group <i class="fa fa-group" aria-hidden="true"></i></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://use.fontawesome.com/d3ddf9730b.js"></script><!-- load awesome -->
+
+    <script src="scripts/controllers/jquery-3.2.0.js"></script><!-- load jquery -->
+    <script src="scripts/controllers/bootstrap.js"></script><!-- load bootstrap -->
+
+    <script src="scripts/controllers/angular.js"></script><!-- load angular -->
+    <script src="scripts/controllers/angular-ui-router.js"></script>
+    <script src="scripts/controllers/angular-modal-service.js"></script>
+    <script src="scripts/controllers/ngStorage.js"></script>
+    <script src="scripts/controllers/ui-bootstrap.js"></script>
+    <script src="scripts/controllers/ng-file-model.js"></script>
+    <script src="scripts/router.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>

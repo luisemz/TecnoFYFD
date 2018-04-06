@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="title text-center">
+    <br>
+    <h1>Ubicación Puntos de Atencion</h1>
+    <br>
+  </div>
+  <div class="col-md-12 text-center">
+    <form class="form-inline">
+
+      <label class="h4" for="inlineForm1">Que servicios de salud sexual necesitas?</label>
+      <select class="form-control" id="inlineForm1"
+        ng-model="typeService" name="typeService">
+          <option value="salud">Solo Salud</option>
+          <option value="consejeria">Solo Consejeria</option>
+          <option value="todo">Todo</option>
+      </select>
+        
+      <label class="h4" for="inlineForm2"> Ciudad: </label>
+      <select class="form-control" id="inlineForm2"
+        ng-model="cities" name="cities">
+          <option value="buga">Buga</option>
+          <option selected value="cali">Cali</option>
+          <option value="cartago">Cartago</option>
+          <option value="tulua">Tulua</option>
+      </select>
+
+      <button type="submit" ng-click="addMarker()" class="btn btn-primary">Buscar</button>
+    </form>
+  </div>
+
+  <div class="col-md-12 text-center">
+    <div ng-if="error"><hr></div>
+    <div class="alert alert-danger" ng-if="error">
+      {{error}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <hr>
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="row">
+      <div map-lazy-load="https://maps.google.com/maps/api/js">
+        <ng-map  ng-model="mapc" id="custom" center="Cali, Valle del Cauca, Colombia" min-zoom="2" zoom="12" zoom-control="false" default-style="false">
+          <custom-marker ng-repeat="cm in customMarkers" position="{{cm.address}}"
+            on-mouseover="mouseover()" on-mouseout="mouseout()"
+            on-click="click()">
+            <div class="{{cm.class}}">
+              <div> Custom Marker {{cm.class}}
+              </div>
+            </div>
+          </custom-marker>
+        </ng-map>
+      </div>
+    </div>
+  </div>
+</div>

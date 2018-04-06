@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 text-center">
+    <h1 class="text-center">Signup TweetManager</h1>
+    <br />
+    <img class="img-circle" alt="User Image" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120">
+    <div ng-if="error"><hr></div>
+    <div class="alert alert-danger" ng-if="error">
+      {{error}}
+    </div>
+    <div ng-if="success"><hr></div>
+    <div class="alert alert-success" ng-if="success">
+      <p class="h5">
+        {{success}}
+        <a ng-href="/web/login">Iniciar Sesión</a>
+        {{success1}}
+      </p>
+    </div>
+  </div>
+</div>

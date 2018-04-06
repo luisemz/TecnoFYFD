@@ -1,0 +1,57 @@
+<div class="row" ng-if="errorAccount">
+  <div class="col-md-8 col-md-offset-2">
+    <hr>
+    <div class="alert alert-danger text-center">
+      <p class="h3">{{errorAccount}}</p>
+      <hr>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <a ng-click="close()" class="btn btn-md btn-danger btn-block" role="button">Aceptar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" ng-if="welcome">
+  <div class="jumbotron jumbotron-home text-center">
+    <h1>{{welcome}}</h1>
+  </div>
+</div>
+
+<div class="row" ng-if="welcome">
+  <div class="col-md-12 text-center">
+    <div ng-if="content">
+      <div class="col-md-3 col-sm-6">
+        <a href="/web/ssr">
+          <img class="img-responsive" src="views/image/tematicas.png" alt="Imagen tematicas.">
+          <h3>Tematicas</h3>
+        </a>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <a href="">
+          <img class="img-responsive" src="views/image/trivia.png" alt="Imagen trivia">
+          <h3>Trivia</h3>
+        </a>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <a href="/web/map">
+          <img class="img-responsive" src="views/image/mapa.png" alt="Imagen mapa.">
+          <h3>Puntos de Interes</h3>
+        </a>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <a href="/web/vr">
+          <img class="img-responsive" src="views/image/VR.png" alt="Imagen VR.">
+          <h3>Recorrido Virtual</h3>
+        </a>
+      </div>
+    </div>
+    <div ng-if="newUser">
+      <hr>
+      <p class="h3">{{newUser}}</p>
+      <hr>
+      <a ng-href="/web/profile" class="btn btn-lg btn-primary" role="button">Perfil de Usuario</a>
+    </div>
+  </div>
+</div>

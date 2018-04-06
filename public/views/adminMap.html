@@ -1,0 +1,226 @@
+<div class="row">
+    <div class="title text-center">
+      <br>
+      <h1>Gestión de Puntos de Atencion</h1>
+    </div>
+  
+    <div class="col-md-12 text-center">
+      <div ng-if="error"><hr></div>
+      <div class="alert alert-danger" ng-if="error">
+        {{error}}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <hr>
+    <div class="col-md-4 text-center">
+        <button ng-click="addPoint()" class="btn btn-block btn-primary">Agregar Punto de Atención</button>
+    </div>
+    <div class="col-md-4 text-center">
+        <button ng-click="editPoint()" class="btn btn-block btn-primary">Editar Punto de Atención</button>
+    </div>
+    <div class="col-md-4 text-center">
+        <button ng-click="deletePoint()" class="btn btn-block btn-primary">Eliminar Punto de Atención</button>
+    </div>
+  </div>
+
+  <div class="row" ng-show="form">
+    <br>
+    <div class="col-md-8 col-md-offset-2 text-center" ng-show="add">
+        <hr>
+        <div class="col-md-12">
+            <form>
+                <label class="h4" for="inlineForm1">Tipo de Servicio:</label>
+                <select class="form-control" id="inlineForm1"
+                    ng-model="typeService" name="typeService">
+                    <option value="salud">Salud</option>
+                    <option value="consejeria">Consejeria</option>
+                </select>
+
+                <label class="h4" for="inlineForm2">Ciudad: </label>
+                <select class="form-control" id="inlineForm2"
+                  ng-model="cities" name="cities">
+                    <option value="buga">Buga</option>
+                    <option selected value="cali">Cali</option>
+                    <option value="cartago">Cartago</option>
+                    <option value="tulua">Tulua</option>
+                </select>
+
+                <hr>
+                
+                <label class="h4" for="nameServices">Nombre:</label>
+                <input class="form-control" type="text" name="description" id="nameService">
+
+                <label class="h4" for="description">Descripción:</label>
+                <input class="form-control" type="text" name="description" id="descirption">
+
+                <label class="h4 in-line">Ubicación:</label>
+            </form>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <form class="form-inline">
+                    <label class="h4" for="latitud">Latitud:</label>
+                    <input class="form-control" type="text" name="latitud" id="latitud">
+                </form>
+            </div>
+            <div class="col-md-6">
+                <form class="form-inline">
+                    <label class="h4" for="longitud">Longitud</label>
+                    <input class="form-control" type="text" name="longitud" id="longitud">
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4 col-md-offset-4">
+            <br>
+            <button ng-click="addPoint()" class="btn btn-block btn-primary">Agregar Punto de Atención</button>
+        </div>
+    </div>
+
+    <div class="col-md-8 col-md-offset-2 text-center" ng-show="edit">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">#</th>
+                    <th class="text-center" scope="col">Ciudad</th>
+                    <th class="text-center" scope="col">Nombre</th>
+                    <th class="text-center" scope="col">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th class="text-center" scope="row">1</th>
+                    <td>Cali</td>
+                    <td>Profamilia</td>
+                    <td>
+                        <button ng-click="" class="btn btn-sm btn-block btn-primary">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="text-center" scope="row">2</th>
+                    <td>Cali</td>
+                    <td>Profamilia</td>
+                    <td>
+                        <button ng-click="" class="btn btn-sm btn-block btn-primary">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="text-center" scope="row">3</th>
+                    <td>Cali</td>
+                    <td>Profamilia</td>
+                    <td>
+                        <button ng-click="" class="btn btn-sm btn-block btn-primary">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="text-center" scope="row">4</th>
+                    <td>Cali</td>
+                    <td>Profamilia</td>
+                    <td>
+                        <button ng-click="" class="btn btn-sm btn-block btn-primary">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="text-center" scope="row">5</th>
+                    <td>Buga</td>
+                    <td>Profamilia</td>
+                    <td>
+                        <button ng-click="" class="btn btn-sm btn-block btn-primary">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="text-center" scope="row">6</th>
+                    <td>Tulua</td>
+                    <td>Profamilia</td>
+                    <td>
+                        <button ng-click="" class="btn btn-sm btn-block btn-primary">Editar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-8 col-md-offset-2 text-center" ng-show="delete">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">#</th>
+                        <th class="text-center" scope="col">Ciudad</th>
+                        <th class="text-center" scope="col">Nombre</th>
+                        <th class="text-center" scope="col">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="text-center" scope="row">1</th>
+                        <td>Cali</td>
+                        <td>Profamilia</td>
+                        <td>
+                            <button ng-click="" class="btn btn-sm btn-block btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center" scope="row">2</th>
+                        <td>Cali</td>
+                        <td>Profamilia</td>
+                        <td>
+                            <button ng-click="" class="btn btn-sm btn-block btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center" scope="row">3</th>
+                        <td>Cali</td>
+                        <td>Profamilia</td>
+                        <td>
+                            <button ng-click="" class="btn btn-sm btn-block btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center" scope="row">4</th>
+                        <td>Cali</td>
+                        <td>Profamilia</td>
+                        <td>
+                            <button ng-click="" class="btn btn-sm btn-block btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center" scope="row">5</th>
+                        <td>Buga</td>
+                        <td>Profamilia</td>
+                        <td>
+                            <button ng-click="" class="btn btn-sm btn-block btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center" scope="row">6</th>
+                        <td>Tulua</td>
+                        <td>Profamilia</td>
+                        <td>
+                            <button ng-click="" class="btn btn-sm btn-block btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+  </div>
+  
+  <div class="row">
+    <hr>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="row">
+        <div map-lazy-load="https://maps.google.com/maps/api/js">
+          <ng-map  ng-model="mapc" id="custom" center="Cali, Valle del Cauca, Colombia" min-zoom="2" zoom="12" zoom-control="false" default-style="false">
+            <custom-marker ng-repeat="cm in customMarkers" position="{{cm.address}}"
+              on-mouseover="mouseover()" on-mouseout="mouseout()"
+              on-click="click()">
+              <div class="{{cm.class}}">
+                <div> Custom Marker {{cm.class}}
+                </div>
+              </div>
+            </custom-marker>
+          </ng-map>
+        </div>
+      </div>
+    </div>
+  </div>
