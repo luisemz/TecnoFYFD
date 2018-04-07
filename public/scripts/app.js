@@ -2,7 +2,7 @@ var app = angular.module('app', ['ui.bootstrap','ui.router','router',
 'ngStorage','ng-file-model','angularModalService']);
 
 // =========================================================================
-// MAIN CONTROLLER =========================================================
+// NAVBAR CONTROLLER =========================================================
 // =========================================================================
 app.controller('mainCtrl', ['$scope', '$http', '$location', '$localStorage',
 '$window', function($scope, $http, $location, $localStorage, $window){
@@ -64,33 +64,33 @@ app.controller('mainCtrl', ['$scope', '$http', '$location', '$localStorage',
 }]);
 
 // =========================================================================
-// SSR ADMIN CONTROLLER ====================================================
+// RESERVAR CONTROLLER ========================================================
 // =========================================================================
-app.controller('ssrAdminCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
-function($scope, $localStorage, $rootScope, $timeout){
-
-}]);
-
-// =========================================================================
-// MAP ADMIN CONTROLLER ====================================================
-// =========================================================================
-app.controller('mapAdminCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
-function($scope, $localStorage, $rootScope, $timeout){
-
-}]);
-
-// =========================================================================
-// SSR CONTROLLER ========================================================
-// =========================================================================
-app.controller('ssrCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
+app.controller('reservarCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
 function($scope, $localStorage, $rootScope,$timeout){
 
 }]);
 
 // =========================================================================
-// MAP CONTROLLER ========================================================
+// PEDIR CONTROLLER ========================================================
 // =========================================================================
-app.controller('mapCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
+app.controller('pedirCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
+function($scope, $localStorage, $rootScope, $timeout){
+
+}]);
+
+// =========================================================================
+// CALIFICAR CONTROLLER ========================================================
+// =========================================================================
+app.controller('calificarCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
+function($scope, $localStorage, $rootScope, $timeout){
+
+}]);
+
+// =========================================================================
+// MÚSICA CONTROLLER ========================================================
+// =========================================================================
+app.controller('musicaCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
 function($scope, $localStorage, $rootScope, $timeout){
 
 }]);
@@ -136,8 +136,26 @@ function($scope, $http, $localStorage, $window){
     delete $scope.error;
     delete $scope.success;
 
-    if (typeof $localStorage.userSave != 'undefined') {
-      if ($scope.user.email != $localStorage.userSave.email) {
+    if ($scope.user.password.length >= 8) {
+      if (typeof $localStorage.userSave != 'undefined') {
+        if ($scope.user.email != $localStorage.userSave.email) {
+          let userSave = {};
+
+          userSave.email = $scope.user.email;
+          userSave.password = $scope.user.password;
+          userSave.nick = $scope.user.nick;
+          userSave.name = $scope.user.name ? $scope.user.name : 'No Especificado';
+          userSave.lastName = $scope.user.lastName ? $scope.user.lastName : 'No Especificado';
+          userSave.registeredDate = new Date();
+          userSave.lastLogin = new Date();
+          $localStorage.userSave = userSave;
+
+          $scope.success = 'Usuario registrado correctamente.';
+          $scope.form = false;
+        } else {
+          $scope.error = 'El correo ya se encuentra registrado.';
+        }
+      } else {
         let userSave = {};
 
         userSave.email = $scope.user.email;
@@ -151,23 +169,9 @@ function($scope, $http, $localStorage, $window){
 
         $scope.success = 'Usuario registrado correctamente.';
         $scope.form = false;
-      } else {
-        $scope.error = 'El correo ya se encuentra registrado.';
       }
     } else {
-      let userSave = {};
-
-      userSave.email = $scope.user.email;
-      userSave.password = $scope.user.password;
-      userSave.nick = $scope.user.nick;
-      userSave.name = $scope.user.name ? $scope.user.name : 'No Especificado';
-      userSave.lastName = $scope.user.lastName ? $scope.user.lastName : 'No Especificado';
-      userSave.registeredDate = new Date();
-      userSave.lastLogin = new Date();
-      $localStorage.userSave = userSave;
-
-      $scope.success = 'Usuario registrado correctamente.';
-      $scope.form = false;
+      $scope.error = 'Formato de contraseña incorrecto.';
     }
   };
 
@@ -493,24 +497,37 @@ function($scope, $http, $localStorage, $window, ModalService){
   $scope.change = function() {
     delete $scope.error;
     delete $scope.sent;
-    if ($scope.user.pass == $scope.user.password) {
-      if ($scope.user.newPass == $scope.user.confirmNewPass) {
-        $scope.success = true;
-        $scope.form = false;
-        $scope.user.password = $scope.user.pass;
-        $localStorage.userSave = $scope.user;
-        $scope.msg = 'Contraseña actualizada correctamente.';
-        $scope.user.pass = "";
-        $scope.user.newPass = "";
-        $scope.user.confirmNewPass = "";
+
+    if ($scope.user.pass) {
+      if ($scope.user.pass == $scope.user.password) {
+        if ($scope.user.newPass.length >= 8
+            && $scope.user.confirmNewPass.length >=8) {
+          if ($scope.user.newPass == $scope.user.confirmNewPass) {
+            $scope.success = true;
+            $scope.form = false;
+            $scope.user.password = $scope.user.newPass;
+            $localStorage.userSave = $scope.user;
+            $scope.msg = 'Información y contraseña actualizada correctamente.';
+            $scope.user.pass = "";
+            $scope.user.newPass = "";
+            $scope.user.confirmNewPass = "";
+          } else {
+            $scope.error = "La nueva contraseña no coincide."
+            $scope.user.newPass = "";
+            $scope.user.confirmNewPass = "";
+          }
+        } else {
+          $scope.error = "Debes insgresar una nueva contraseña con el formato correcto."
+        }
       } else {
-        $scope.error = "La nueva contraseña no coincide.."
-        $scope.user.newPass = "";
-        $scope.user.confirmNewPass = "";
+        $scope.error = "La contraseña actual ingresada es incorrecta.";
+        $scope.user.pass = "";
       }
     } else {
-      $scope.error = "La contraseña actual ingresada es incorrecta.";
-      $scope.user.pass = "";
+      $scope.success = true;
+      $scope.form = false;
+      $localStorage.userSave = $scope.user;
+      $scope.msg = 'Información actualizada correctamente.';
     }
   }
 
@@ -522,6 +539,11 @@ function($scope, $http, $localStorage, $window, ModalService){
     $scope.user.password = '12345678';
     $localStorage.userSave = $scope.user;
   };
+
+  $scope.showForm = function() {
+    $scope.form = !$scope.form;
+    window.scrollTo(0, 0);
+  }
 
   $scope.deleteAccount = function(user) {
     ModalService.showModal({

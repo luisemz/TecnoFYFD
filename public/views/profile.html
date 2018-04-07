@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2 text-center">
-    <div class="panel panel-default">
+    <div class="panel panel-default" ng-show="!form">
       <div class="panel-heading"><h1>Perfil de Usuario</h1></div>
       <div class="panel-body">
         <img class="img-circle" alt="Profile Image" src="assets/images/profile.png" height="200" width="200">
@@ -23,24 +23,14 @@
       <div class="panel-footer">
         <div class="row" ng-show="!admin">
           <div class="row" ng-show="changePassword">
-            <div class="col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
                 <div class="col-md-6">
-                  <a ng-click="form = !form" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Editar Perfil</a>
+                  <a ng-click="showForm()" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Editar Perfil</a>
                 </div>
                 <div class="col-md-6">
                   <a ng-click="deleteAccount(user)" class="btn btn-md btn-danger btn-block" role="button" style="margin-top:5px;">Eliminar Perfil</a>
                 </div>
             </div>
-          </div>
-          <div class="row" ng-show="!changePassword">
-            <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
-              <a ng-click="deleteAccount(user)" class="btn btn-md btn-danger btn-block" role="button">Eliminar</a>
-            </div>
-          </div>
-        </div>
-        <div class="row" ng-show="admin">
-          <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
-            <a ng-click="form = !form" class="btn btn-md btn-primary btn-block" role="button">Cambiar Contraseña</a>
           </div>
         </div>
       </div>
@@ -49,20 +39,32 @@
 </div>
 <div class="row">
   <div class="col-md-4 col-md-offset-4 text-center">
-    <div class="alert alert-danger" ng-if="error">
-      <p class="h5">{{error}}</p>
-    </div>
     <form ng-show="form">
-      <p class="h5">Complete la siguiente información para cambiar la contraseña</p>
+      <img class="img-circle" alt="Profile Image" src="assets/images/profile.png" height="200" width="200">
+      <span class="help-block h5">Nombre de usuario:</span>
+      <input type="tex" name="nick" class="form-control text-center" placeholder="Nombre de usuario" ng-model="user.nick" required>
+      <span class="help-block h5">Nombre:</span>
+      <input type="tex" name="name" class="form-control text-center" placeholder="Nombre" ng-model="user.name">
+      <span class="help-block h5">Apellido:</span>
+      <input type="tex" name="lastName" class="form-control text-center" placeholder="Apellido" ng-model="user.lastName">
       <hr>
-      <input type="password" name="password" class="form-control text-center" placeholder="Contraseña Actual" ng-model="user.pass" required autofocus>
+      <div class="alert alert-danger" ng-if="error">
+        <p class="h5">{{error}}</p>
+      </div>
+      <p class="h5">Complete la siguiente información para cambiar la contraseña</p>
+      <input type="password" name="password" class="form-control text-center" placeholder="Contraseña Actual" ng-model="user.pass">
       <hr>
       <span class="help-block h6">La contraseña debe tener por lo menos 8 carácteres.</span>
-      <input type="password" name="newPassword" class="form-control text-center" placeholder="Nueva Contraseña" ng-model="user.newPass" pattern=".{8,}" required>
+      <input type="password" name="newPassword" class="form-control text-center" placeholder="Nueva Contraseña" ng-model="user.newPass" pattern=".{8,}">
       <br>
-      <input type="password" name="confirmNewPassword" class="form-control text-center" placeholder="Confirmar Nueva Contraseña" ng-model="user.confirmNewPass" pattern=".{8,}" required>
+      <input type="password" name="confirmNewPassword" class="form-control text-center" placeholder="Confirmar Nueva Contraseña" ng-model="user.confirmNewPass" pattern=".{8,}">
       <hr>
-      <button class="btn btn-md btn-primary" type="submit" ng-click="change()">Cambiar Contraseña</button>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+          <button class="btn btn-md btn-primary btn-block" type="submit" ng-click="change()">Actualizar</button>
+          <a ng-click="showForm()" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Cancelar</a>
+        </div>
+      </div>
       <p class="h6">Olvidó su contraseña? <a ng-click="restore()">Restaurar Contraseña</a></p>
     </form>
     <div ng-show="success"><hr></div>

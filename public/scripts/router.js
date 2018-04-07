@@ -23,7 +23,7 @@ angular.module('router', ['ui.router'])
       views: {
         'reservar': {
           templateUrl: 'views/reservar.html',
-          controller: 'ssrCtrl'
+          controller: 'reservarCtrl'
         },
         'navbar': {
           templateUrl: 'views/navbar.html',
@@ -36,7 +36,7 @@ angular.module('router', ['ui.router'])
       views: {
         'pedir': {
           templateUrl: 'views/pedir.html',
-          controller: 'mapCtrl'
+          controller: 'pedirCtrl'
         },
         'navbar': {
           templateUrl: 'views/navbar.html',
@@ -48,7 +48,8 @@ angular.module('router', ['ui.router'])
       url: '/calificar',
       views: {
         'calificar': {
-          templateUrl: 'views/calificar.html'
+          templateUrl: 'views/calificar.html',
+          controller: 'calificarCtrl'
         },
         'navbar': {
           templateUrl: 'views/navbar.html',
@@ -60,7 +61,8 @@ angular.module('router', ['ui.router'])
       url: '/musica',
       views: {
         'musica': {
-          templateUrl: 'views/musica.html'
+          templateUrl: 'views/musica.html',
+          controller: 'musicaCtrl'
         },
         'navbar': {
           templateUrl: 'views/navbar.html',
