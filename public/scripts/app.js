@@ -31,10 +31,10 @@ app.controller('mainCtrl', ['$scope', '$http', '$location', '$localStorage',
         $scope.showAdmin = false;
       }
       $scope.navbarHome.home = "Inicio";
-      $scope.navbarHome.themes = "Tematicas";
-      $scope.navbarHome.trivia = "Trivia";
-      $scope.navbarHome.maps = "Puntos de Interes";
-      $scope.navbarHome.vr = "VR";
+      $scope.navbarHome.themes = "Reservar Mesa";
+      $scope.navbarHome.trivia = "Realizar Pedido";
+      $scope.navbarHome.maps = "Calificar Platos";
+      $scope.navbarHome.vr = "Elegir Música";
       $scope.navbarHome.logout = "Cerrar Sesión";
       $scope.navbarHome.nick = $localStorage.user.nick;
 
@@ -262,7 +262,7 @@ function($scope, $http, $location, $localStorage, $window, ModalService){
 
   if (typeof $localStorage.user != 'undefined') {
     $localStorage.sessionTerminated = false;
-    $scope.welcome = 'Bienvenido a TECNO App'
+    $scope.welcome = 'TECNO App'
     $scope.content = "Contenido";
   } else {
     $localStorage.sessionTerminated = true;
@@ -582,16 +582,8 @@ function($scope, $element, title, account, close) {
 }]);
 
 function logoutSession($scope, $http, $localStorage, $window){
-  $http.get('/api/logout')
-    .success(function(response) {
-      delete $localStorage.user;
-      delete $localStorage.username;
-      delete $scope.navbarHome;
-      delete $localStorage.addDesc;
-      $scope.navbarIndex = {};
-      $window.location = $window.location.protocol + "//" + $window.location.host + "/web/";
-    })
-    .error(function(response) {
-        console.log('Error: ' + response);
-    });
+  delete $localStorage.user;
+  delete $scope.navbarHome;
+  $scope.navbarIndex = {};
+  $window.location = $window.location.protocol + "//" + $window.location.host + "/";
 }

@@ -1231,7 +1231,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #23527c;
+  color: #323232;
   text-decoration: underline;
 }
 a:focus {
@@ -1252,6 +1252,7 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: 5%;
 }
 .img-rounded {
   border-radius: 6px;
@@ -5211,11 +5212,9 @@ a.badge:focus {
   background-color: #eee;
 }
 .jumbotron-home {
-  padding-top: 30px;
-  padding-bottom: 30px;
   margin-bottom: 30px;
   color: #fff;
-  background-color: #008BEF;
+  background-color: #323232;
 }
 .jumbotron-start {
   background-color: #323232;
