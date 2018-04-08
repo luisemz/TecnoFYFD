@@ -44,6 +44,32 @@ angular.module('router', ['ui.router'])
         }
       }
     })
+    .state('pedirCrear',{
+      url: '/pedir/crear',
+      views: {
+        'pedirCrear': {
+          templateUrl: 'views/pedir-crear.html',
+          controller: 'pedirCrearCtrl'
+        },
+        'navbar': {
+          templateUrl: 'views/navbar.html',
+          controller: 'mainCtrl'
+        }
+      }
+    })
+    .state('pedirMenu',{
+      url: '/pedir/menu',
+      views: {
+        'pedirMenu': {
+          templateUrl: 'views/pedir-menu.html',
+          controller: 'pedirMenuCtrl'
+        },
+        'navbar': {
+          templateUrl: 'views/navbar.html',
+          controller: 'mainCtrl'
+        }
+      }
+    })
     .state('calificar',{
       url: '/calificar',
       views: {

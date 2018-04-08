@@ -2,7 +2,7 @@ var app = angular.module('app', ['ui.bootstrap','ui.router','router',
 'ngStorage','ng-file-model','angularModalService']);
 
 // =========================================================================
-// NAVBAR CONTROLLER =========================================================
+// NAVBAR CONTROLLER =======================================================
 // =========================================================================
 app.controller('mainCtrl', ['$scope', '$http', '$location', '$localStorage',
 '$window', function($scope, $http, $location, $localStorage, $window){
@@ -64,7 +64,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$location', '$localStorage',
 }]);
 
 // =========================================================================
-// RESERVAR CONTROLLER ========================================================
+// RESERVAR CONTROLLER =====================================================
 // =========================================================================
 app.controller('reservarCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
 function($scope, $localStorage, $rootScope,$timeout){
@@ -142,7 +142,23 @@ function($scope, $localStorage, $rootScope, $timeout){
 }]);
 
 // =========================================================================
-// CALIFICAR CONTROLLER ========================================================
+// PEDIR CREAR CONTROLLER ==================================================
+// =========================================================================
+app.controller('pedirCrearCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
+function($scope, $localStorage, $rootScope, $timeout){
+
+}]);
+
+// =========================================================================
+// PEDIR MENU CONTROLLER ===================================================
+// =========================================================================
+app.controller('pedirMenuCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
+function($scope, $localStorage, $rootScope, $timeout){
+
+}]);
+
+// =========================================================================
+// CALIFICAR CONTROLLER ====================================================
 // =========================================================================
 app.controller('calificarCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
 function($scope, $localStorage, $rootScope, $timeout){
@@ -150,7 +166,7 @@ function($scope, $localStorage, $rootScope, $timeout){
 }]);
 
 // =========================================================================
-// MÚSICA CONTROLLER ========================================================
+// MÚSICA CONTROLLER =======================================================
 // =========================================================================
 app.controller('musicaCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
 function($scope, $localStorage, $rootScope, $timeout){
@@ -337,7 +353,7 @@ function($scope, $http, $location, $localStorage, $window, ModalService){
 }]);
 
 // =========================================================================
-// USERS CONTROLLER =========================================================
+// USERS CONTROLLER ========================================================
 // =========================================================================
 app.controller('usersCtrl', ['$scope', '$http', '$location', '$localStorage',
 '$window', 'ModalService',
