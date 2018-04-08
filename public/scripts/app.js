@@ -69,6 +69,68 @@ app.controller('mainCtrl', ['$scope', '$http', '$location', '$localStorage',
 app.controller('reservarCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
 function($scope, $localStorage, $rootScope,$timeout){
 
+  if (typeof $localStorage.user.reserve != 'undefined') {
+    $scope.reserveDo = $localStorage.user.reserve;
+    let element = document.getElementById("table"+$scope.reserveDo.table);
+    angular.element(element).removeClass("tableAvailable").addClass("tableSelect");
+  }
+
+  $scope.reserver = function(estado, mesa) {
+    delete $scope.error;
+    delete $scope.tableSelected;
+
+    var i;
+    for (i = 1; i <= 16; i++) { 
+      let element = document.getElementById("table"+i);
+      if (angular.element(element).hasClass("tableSelect")){
+        angular.element(element).removeClass("tableSelect").addClass("tableAvailable");
+      }
+    }
+
+    if (estado == 'reserved') {
+      $scope.error = 'La mesa (' + mesa + ') que esta seleccionando se encuentra reservada.';
+    } else {
+      $scope.tableSelected = mesa;
+      let element = document.getElementById("table"+mesa);
+      angular.element(element).removeClass("tableAvailable").addClass("tableSelect");
+    }
+  }
+
+  $scope.doReserver = function (reserva) {
+    if (typeof reserva != 'undefined') {
+      if (typeof reserva.date != 'undefined'
+          && typeof reserva.time != 'undefined') {
+        let reserve = {}
+        reserve.table = $scope.tableSelected;
+        reserve.date = reserva.date;
+        reserve.time = reserva.time;
+        $localStorage.user.reserve = reserve;
+        delete $scope.tableSelected;
+        $scope.success = 'La reserva de la mesa (' + reserve.table + ') se realizó correctamente.';
+        $scope.date = reserve.date;
+        $scope.time = reserve.time;
+      }
+    }
+  }
+
+  $scope.ok = function () {
+    delete $scope.success;
+    delete $scope.successDelete;
+    window.scrollTo(0, 0);
+    window.location.reload();
+  }
+
+  $scope.cancel = function () {
+    delete $scope.error;
+    delete $scope.tableSelected;
+    delete $scope.success;
+  }
+
+  $scope.deleteReserve = function () {
+    delete $localStorage.user.reserve;
+    delete $scope.reserveDo;
+    $scope.successDelete = 'Reserva cancelada exitosamente.';
+  }
 }]);
 
 // =========================================================================
