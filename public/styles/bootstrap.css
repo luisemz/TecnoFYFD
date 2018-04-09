@@ -20,38 +20,98 @@
   padding-left: 0px !important;
 }
 .tableBlankSpace {
-  line-height: 50px;
-  width: 50px;
-  height: 50px;
+  line-height: 45px;
+  width: 45px;
+  height: 45px;
 }
 .tableAvailable {
   background-image: url(../assets/images/mDisponible.png);
   background-size: contain;
   background-repeat: no-repeat;
-  line-height: 50px;
-  width: 50px;
-  height: 50px;
+  line-height: 45px;
+  width: 45px;
+  height: 45px;
 }
 .tableSelect {
   background-image: url(../assets/images/mSeleccionada.png);
   background-size: contain;
   background-repeat: no-repeat;
-  line-height: 50px;
-  width: 50px;
-  height: 50px;
+  line-height: 45px;
+  width: 45px;
+  height: 45px;
 }
 .tableReserve {
   background-image: url(../assets/images/mReservada.png);
   background-size: contain;
   background-repeat: no-repeat;
-  line-height: 50px;
-  width: 50px;
-  height: 50px;
+  line-height: 45px;
+  width: 45px;
+  height: 45px;
+}
+.table2Available {
+  background-image: url(../assets/images/m2Disponible.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  line-height: 45px;
+  width: 45px;
+  height: 45px;
+}
+.table2Select {
+  background-image: url(../assets/images/m2Seleccionada.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  line-height: 45px;
+  width: 45px;
+  height: 45px;
+}
+.table2Reserve {
+  background-image: url(../assets/images/m2Reservada.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  line-height: 45px;
+  width: 45px;
+  height: 45px;
+}
+.table2AvailableRotate {
+  background-image: url(../assets/images/m2DisponibleR.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  line-height: 45px;
+  width: 45px;
+  height: 45px;
+}
+.table2SelectRotate {
+  background-image: url(../assets/images/m2SeleccionadaR.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  line-height: 45px;
+  width: 45px;
+  height: 45px;
+}
+.table2ReserveRotate {
+  background-image: url(../assets/images/m2ReservadaR.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  line-height: 45px;
+  width: 45px;
+  height: 45px;
 }
 .tableAvailable span,
 .tableReserve span,
 .tableSelect span {
   color: #323232;
+}
+.border-top {
+  border-top: solid 1px #323232 !important;
+}
+.border-bottom {
+  border-bottom: solid 1px #323232 !important;
+}
+.border-right {
+  border-right: solid 1px #323232 !important;
+}
+.border-left {
+  border-left: solid 1px #323232 !important;
 }
 .footer {
   position: fixed;

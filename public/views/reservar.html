@@ -64,172 +64,206 @@
 
 <div class="row text-center">
   <hr>
-  <h4>Entrada</h4>
+  <h4>Cocina</h4>
 </div>
 <div class="row text-center tables">
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
+  <div class="col-md-3 col-sm-3 col-xs-3 tableContainer">
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="table2Available border-top border-right border-left" ng-click="reserver('available', 1)" id="table1">
+        <span>1</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable" ng-click="reserver('available', 2)" id="table2">
+        <span>2</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableReserve" ng-click="reserver('reserved', 3)" id="table3">
+        <span>3</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable" ng-click="reserver('available', 4)" id="table4">
+        <span>4</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable" ng-click="reserver('available', 5)" id="table5">
+        <span>5</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableReserve" ng-click="reserver('reserved', 6)" id="table6">
+        <span>6</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable" ng-click="reserver('available', 7)" id="table7">
+        <span>7</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableReserve" ng-click="reserver('reserved', 8)" id="table8">
+        <span>8</span>
+      </div>
     </div>
   </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
+
+  <div class="col-md-3 col-sm-3 col-xs-3 tableContainer">
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace border-right">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace border-left">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace border-right">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace border-left">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="table2ReserveRotate border-right" ng-click="reserver('reserved', 9)" id="table9">
+        <span>9</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable border-left" ng-click="reserver('available', 10)" id="table10">
+        <span>10</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="table2AvailableRotate border-right" ng-click="reserver('available', 11)" id="table11">
+        <span>11</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable border-left" ng-click="reserver('available', 12)" id="table12">
+        <span>12</span>
+      </div>
     </div>
   </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableAvailable" ng-click="reserver('available', 1)" id="table1">
-      <span>1</span>
+
+  <div class="col-md-3 col-sm-3 col-xs-3 tableContainer">
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace border-right">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable border-right" ng-click="reserver('available', 13)" id="table13">
+        <span>13</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable border-right" ng-click="reserver('available', 14)" id="table14">
+        <span>14</span>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable border-right" ng-click="reserver('available', 15)" id="table15">
+        <span>15</span>
+      </div>
     </div>
   </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableAvailable" ng-click="reserver('available', 2)" id="table2">
-      <span>2</span>
+
+  <div class="col-md-3 col-sm-3 col-xs-3 tableContainer">
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableReserve border-left" ng-click="reserver('reserved', 16)" id="table16">
+        <span>16</span>
+      </div>
     </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable" ng-click="reserver('available', 17)" id="table17">
+        <span>17</span>
+      </div>
     </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableReserve" ng-click="reserver('reserved', 3)" id="table3">
-      <span>3</span>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable border-left" ng-click="reserver('available', 18)" id="table18">
+        <span>18</span>
+      </div>
     </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableReserve" ng-click="reserver('reserved', 19)" id="table19">
+        <span>19</span>
+      </div>
     </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace">
+      </div>
     </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableBlankSpace">
+      </div>
     </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable border-left" ng-click="reserver('available', 20)" id="table20">
+        <span>20</span>
+      </div>
     </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable" ng-click="reserver('available', 21)" id="table21">
+        <span>21</span>
+      </div>
     </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableAvailable" ng-click="reserver('available', 4)" id="table4">
-      <span>4</span>
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableReserve border-left" ng-click="reserver('reserved', 22)" id="table22">
+        <span>22</span>
+      </div>
     </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableAvailable" ng-click="reserver('available', 5)" id="table5">
-      <span>5</span>
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableReserve" ng-click="reserver('reserved', 6)" id="table6">
-      <span>6</span>
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableAvailable" ng-click="reserver('available', 7)" id="table7">
-      <span>7</span>
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableReserve" ng-click="reserver('reserved', 8)" id="table8">
-      <span>8</span>
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableReserve" ng-click="reserver('reserved', 9)" id="table9">
-      <span>9</span>
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableAvailable" ng-click="reserver('available', 10)" id="table10">
-      <span>10</span>
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableAvailable" ng-click="reserver('available', 11)" id="table11">
-      <span>11</span>
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableAvailable" ng-click="reserver('available', 12)" id="table12">
-      <span>12</span>
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableAvailable" ng-click="reserver('available', 13)" id="table13">
-      <span>13</span>
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableAvailable" ng-click="reserver('available', 14)" id="table14">
-      <span>14</span>
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableAvailable" ng-click="reserver('available', 15)" id="table15">
-      <span>15</span>
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableReserve" ng-click="reserver('reserved', 16)" id="table16">
-      <span>16</span>
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-2 col-xs-2 tableContainer" align="center">
-    <div class="tableBlankSpace">
+    <div class="col-md-6 col-sm-6 col-xs-6 tableContainer" align="center">
+      <div class="tableAvailable" ng-click="reserver('available', 23)" id="table23">
+        <span>23</span>
+      </div>
     </div>
   </div>
 </div>
 <div class="row text-center">
-  <h4>Cocina</h4>
+  <h4>Entrada</h4>
   <hr>
 </div>
 

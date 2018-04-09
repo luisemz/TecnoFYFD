@@ -72,7 +72,13 @@ function($scope, $localStorage, $rootScope,$timeout){
   if (typeof $localStorage.user.reserve != 'undefined') {
     $scope.reserveDo = $localStorage.user.reserve;
     let element = document.getElementById("table"+$scope.reserveDo.table);
-    angular.element(element).removeClass("tableAvailable").addClass("tableSelect");
+    if (angular.element(element).hasClass("tableAvailable")) {
+      angular.element(element).removeClass("tableAvailable").addClass("tableSelect");
+    } else if (angular.element(element).hasClass("table2Available")){
+      angular.element(element).removeClass("table2Available").addClass("table2Select");
+    } else if (angular.element(element).hasClass("table2AvailableRotate")) {
+      angular.element(element).removeClass("table2AvailableRotate").addClass("table2SelectRotate");
+    }
   }
 
   $scope.reserver = function(estado, mesa) {
@@ -80,10 +86,14 @@ function($scope, $localStorage, $rootScope,$timeout){
     delete $scope.tableSelected;
 
     var i;
-    for (i = 1; i <= 16; i++) { 
+    for (i = 1; i <= 23; i++) { 
       let element = document.getElementById("table"+i);
       if (angular.element(element).hasClass("tableSelect")){
         angular.element(element).removeClass("tableSelect").addClass("tableAvailable");
+      } else if (angular.element(element).hasClass("table2Select")){
+        angular.element(element).removeClass("table2Select").addClass("table2Available");
+      } else if (angular.element(element).hasClass("table2SelectRotate")) {
+        angular.element(element).removeClass("table2SelectRotate").addClass("table2AvailableRotate");
       }
     }
 
@@ -92,7 +102,13 @@ function($scope, $localStorage, $rootScope,$timeout){
     } else {
       $scope.tableSelected = mesa;
       let element = document.getElementById("table"+mesa);
-      angular.element(element).removeClass("tableAvailable").addClass("tableSelect");
+      if (angular.element(element).hasClass("tableAvailable")) {
+        angular.element(element).removeClass("tableAvailable").addClass("tableSelect");
+      } else if (angular.element(element).hasClass("table2Available")) {
+        angular.element(element).removeClass("table2Available").addClass("table2Select");
+      } else if(angular.element(element).hasClass("table2AvailableRotate")) {
+        angular.element(element).removeClass("table2AvailableRotate").addClass("table2SelectRotate");
+      }
     }
   }
 
