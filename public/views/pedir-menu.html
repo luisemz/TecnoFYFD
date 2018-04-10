@@ -11,6 +11,308 @@
   <div class="col-md-12 text-center">
     <div class="row">
       <br>
+      <span class="h3">Seleccione los Platos</span>
+      <hr>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">
+          <label for="sel1">Número de  Platos</label>
+          <select class="form-control text-center" id="sel1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row"><hr></div>
+    
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <a ng-click="in1 = !in1" class="btn btn-lg btn-link btn-block" role="button" style="margin-top:5px;">
+          Platos Básicos
+          <span class="glyphicon glyphicon-chevron-down" ng-show="!in1"></span>
+          <span class="glyphicon glyphicon-chevron-up" ng-show="in1"></span>
+        </a>
+        <div class="row scrollableRow">
+          <div class="col-md-12 col-sm-12 col-xs-12 scrollableContainer" ng-show="in1">
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="plate1" ng-click="addPlate(1)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!plate[0].select"></span>
+                  <span class="fa fa-circle" ng-show="plate[0].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Plato B1</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/plato.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+            
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="plate2" ng-click="addPlate(2)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!plate[1].select"></span>
+                  <span class="fa fa-circle" ng-show="plate[1].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Plato B2</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/plato.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="plate3" ng-click="addPlate(3)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!plate[2].select"></span>
+                  <span class="fa fa-circle" ng-show="plate[2].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Plato B3</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/plato.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="plate4" ng-click="addPlate(4)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!plate[3].select"></span>
+                  <span class="fa fa-circle" ng-show="plate[3].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Plato B4</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/plato.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+            
+            <div class="row"><hr></div>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <a ng-click="in2 = !in2" class="btn btn-lg btn-link btn-block" role="button" style="margin-top:5px;">
+          Platos Especiales
+          <span class="glyphicon glyphicon-chevron-down" ng-show="!in2"></span>
+          <span class="glyphicon glyphicon-chevron-up" ng-show="in2"></span>
+        </a>
+        <div class="row scrollableRow">
+          <div class="col-md-12 col-sm-12 col-xs-12 scrollableContainer" ng-show="in2">
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="plate5" ng-click="addPlate(5)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!plate[4].select"></span>
+                  <span class="fa fa-circle" ng-show="plate[4].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Plato E1</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/plato.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+            
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="plate6" ng-click="addPlate(6)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!plate[5].select"></span>
+                  <span class="fa fa-circle" ng-show="plate[5].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Plato E2</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/plato.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="plate7" ng-click="addPlate(7)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!plate[6].select"></span>
+                  <span class="fa fa-circle" ng-show="plate[6].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Plato E3</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/plato.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="plate8" ng-click="addPlate(8)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!plate[7].select"></span>
+                  <span class="fa fa-circle" ng-show="plate[7].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Plato E4</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/plato.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+            
+            <div class="row"><hr></div>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <a ng-click="inAdd = !inAdd" class="btn btn-lg btn-link btn-block" role="button" style="margin-top:5px;">
+          Platos Creados por Usuarios
+          <span class="glyphicon glyphicon-chevron-down" ng-show="!inAdd"></span>
+          <span class="glyphicon glyphicon-chevron-up" ng-show="inAdd"></span>
+        </a>
+        <div class="row scrollableRow">
+          <div class="col-md-12 col-sm-12 col-xs-12 scrollableContainer" ng-show="inAdd">
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="plate9" ng-click="addPlate(9)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!plate[8].select"></span>
+                  <span class="fa fa-circle" ng-show="plate[8].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Plato U1</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/plato.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+            
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="plate10" ng-click="addPlate(10)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!plate[9].select"></span>
+                  <span class="fa fa-circle" ng-show="plate[9].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Plato U2</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/plato.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="plate11" ng-click="addPlate(11)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!plate[10].select"></span>
+                  <span class="fa fa-circle" ng-show="plate[10].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Plato U3</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/plato.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="plate12" ng-click="addPlate(12)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!plate[11].select"></span>
+                  <span class="fa fa-circle" ng-show="plate[11].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Plato U4</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/plato.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+            
+            <div class="row"><hr></div>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+
+    <div class="row text-center" ng-if="warning">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="alert alert-warning">
+          <span class="h4">{{warning}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <br>
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+        <a ng-click="doOrder()" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Realizar Pedido</a>
+      </div>
+    </div>
+    <div class="row">
+      <br>
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
         <a href="/pedir" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Volver</a>
       </div>

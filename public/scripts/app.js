@@ -162,7 +162,125 @@ function($scope, $localStorage, $rootScope, $timeout){
 // =========================================================================
 app.controller('pedirCrearCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
 function($scope, $localStorage, $rootScope, $timeout){
+  let order = {};
+  order.ingredientA = [];
 
+  $scope.ingredientP = [
+    {select: false,price: 9000},
+    {select: false,price: 7000},
+    {select: false,price: 8000},
+    {select: false,price: 7000}
+  ];
+  $scope.ingredientS = [
+    {select: false,price: 5000},
+    {select: false,price: 4000},
+    {select: false,price: 5000},
+    {select: false,price: 6000}
+  ];
+  $scope.ingredientA = [
+    {select: false,price: 1000},
+    {select: false,price: 3000},
+    {select: false,price: 3000},
+    {select: false,price: 2000}
+  ];
+
+  $scope.addP = function(index) {
+    let element = document.getElementById("iP"+index);
+
+    var j;
+    for (j = 1; j <= 4; j++) {
+      let e = document.getElementById("iP"+j);
+      if (angular.element(e).hasClass("ingredientSelect")
+          && j != index){
+        angular.element(e).removeClass("ingredientSelect");
+        $scope.ingredientP[j-1].select = false;
+      }
+    }
+
+    var i = index - 1;
+    $scope.ingredientP[i].select = !$scope.ingredientP[i].select;
+
+    if ($scope.ingredientP[i].select) {
+      angular.element(element).addClass("ingredientSelect");
+      let ingredientP = $scope.ingredientP[i];
+      ingredientP.index = i;
+      order.ingredientP = ingredientP;
+    } else {
+      angular.element(element).removeClass("ingredientSelect");
+      delete order.ingredientP;
+    }
+  }
+
+  $scope.addS = function(index) {
+    let element = document.getElementById("iS"+index);
+
+    var j;
+    for (j = 1; j <= 4; j++) {
+      let e = document.getElementById("iS"+j);
+      if (angular.element(e).hasClass("ingredientSelect")
+          && j != index){
+        angular.element(e).removeClass("ingredientSelect");
+        $scope.ingredientS[j-1].select = false;
+      }
+    }
+
+    var i = index - 1;
+    $scope.ingredientS[i].select = !$scope.ingredientS[i].select;
+
+    if ($scope.ingredientS[i].select) {
+      angular.element(element).addClass("ingredientSelect");
+      let ingredientS = $scope.ingredientS[i];
+      ingredientS.index = i;
+      order.ingredientS = ingredientS;
+    } else {
+      angular.element(element).removeClass("ingredientSelect");
+      delete order.ingredientS;
+    }
+  }
+
+  $scope.addA = function(index) {
+    let element = document.getElementById("iA"+index);
+
+    var i = index - 1;
+    $scope.ingredientA[i].select = !$scope.ingredientA[i].select;
+
+    if ($scope.ingredientA[i].select) {
+      angular.element(element).addClass("ingredientSelect");
+      let tem = $scope.ingredientA[i];
+      tem.index = i;
+      order.ingredientA.push(tem);
+    } else {
+      angular.element(element).removeClass("ingredientSelect");
+      var remove;
+      var j;
+      for (j = 0; j < order.ingredientA.length; j++) {
+        if (typeof order.ingredientA[j] != 'undefined') {
+          if (order.ingredientA[j].index == i) {
+            remove = j;
+          }
+        }
+      }
+      delete order.ingredientA[remove];
+    }
+  }
+
+  $scope.doOrder = function () {
+    delete $scope.warning;
+    
+    if (typeof order.ingredientP != 'undefined') {
+      if (typeof order.ingredientS != 'undefined') {
+        if (typeof $localStorage.user != 'undefined') {
+          $localStorage.user.order = order;
+        } else {
+          logoutSession($scope, $http, $localStorage, $window);
+        }
+      } else {
+        $scope.warning = "Debes seleccionar el ingrediente secundario.";
+      }
+    } else {
+      $scope.warning = "Debes seleccionar el ingrediente principal.";
+    }
+  }
 }]);
 
 // =========================================================================
@@ -170,7 +288,64 @@ function($scope, $localStorage, $rootScope, $timeout){
 // =========================================================================
 app.controller('pedirMenuCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
 function($scope, $localStorage, $rootScope, $timeout){
+  let order = {};
 
+  $scope.plate = [
+    {select: false,price: 90000},
+    {select: false,price: 8000},
+    {select: false,price: 8000},
+    {select: false,price: 10000},
+    {select: false,price: 12000},
+    {select: false,price: 12000},
+    {select: false,price: 14000},
+    {select: false,price: 15000},
+    {select: false,price: 13000},
+    {select: false,price: 12000},
+    {select: false,price: 15000},
+    {select: false,price: 17000}
+  ];
+
+  $scope.addPlate = function (index) {
+    let element = document.getElementById("plate"+index);
+
+    var j;
+    for (j = 1; j <= 12; j++) {
+      let e = document.getElementById("plate"+j);
+      if (angular.element(e).hasClass("plateSelect")
+          && j != index){
+        angular.element(e).removeClass("plateSelect");
+        $scope.plate[j-1].select = false;
+      }
+    }
+
+    var i = index - 1;
+    $scope.plate[i].select = !$scope.plate[i].select;
+
+    if ($scope.plate[i].select) {
+      angular.element(element).addClass("plateSelect");
+      let plate = $scope.plate[i];
+      plate.index = i;
+      order.plate = plate;
+    } else {
+      angular.element(element).removeClass("plateSelect");
+      delete order.plate;
+    }
+  }
+
+  $scope.doOrder = function () {
+    delete $scope.warning;
+    
+    if (typeof order.plate != 'undefined') {
+      if (typeof $localStorage.user != 'undefined') {
+        //$localStorage.user.order = order;
+        console.log(order)
+      } else {
+        logoutSession($scope, $http, $localStorage, $window);
+      }
+    } else {
+      $scope.warning = "Debes seleccionar un plato.";
+    }
+  }
 }]);
 
 // =========================================================================

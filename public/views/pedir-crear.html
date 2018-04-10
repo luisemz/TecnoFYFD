@@ -11,6 +11,308 @@
   <div class="col-md-12 text-center">
     <div class="row">
       <br>
+      <span class="h3">Seleccione los ingredientes</span>
+      <hr>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">
+          <label for="sel1">Número de  Platos</label>
+          <select class="form-control text-center" id="sel1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row"><hr></div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <a ng-click="in1 = !in1" class="btn btn-lg btn-link btn-block" role="button" style="margin-top:5px;">
+          Ingrediente Principal
+          <span class="glyphicon glyphicon-chevron-down" ng-show="!in1"></span>
+          <span class="glyphicon glyphicon-chevron-up" ng-show="in1"></span>
+        </a>
+        <div class="row scrollableRow">
+          <div class="col-md-12 col-sm-12 col-xs-12 scrollableContainer" ng-show="in1">
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="iP1" ng-click="addP(1)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!ingredientP[0].select"></span>
+                  <span class="fa fa-circle" ng-show="ingredientP[0].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Ingrediente P1</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+            
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="iP2" ng-click="addP(2)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!ingredientP[1].select"></span>
+                  <span class="fa fa-circle" ng-show="ingredientP[1].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Ingrediente P2</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="iP3" ng-click="addP(3)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!ingredientP[2].select"></span>
+                  <span class="fa fa-circle" ng-show="ingredientP[2].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Ingrediente P3</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="iP4" ng-click="addP(4)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!ingredientP[3].select"></span>
+                  <span class="fa fa-circle" ng-show="ingredientP[3].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Ingrediente P4</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+            
+            <div class="row"><hr></div>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <a ng-click="in2 = !in2" class="btn btn-lg btn-link btn-block" role="button" style="margin-top:5px;">
+          Ingrediente Secundario
+          <span class="glyphicon glyphicon-chevron-down" ng-show="!in2"></span>
+          <span class="glyphicon glyphicon-chevron-up" ng-show="in2"></span>
+        </a>
+        <div class="row scrollableRow">
+          <div class="col-md-12 col-sm-12 col-xs-12 scrollableContainer" ng-show="in2">
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="iS1" ng-click="addS(1)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!ingredientS[0].select"></span>
+                  <span class="fa fa-circle" ng-show="ingredientS[0].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Ingrediente S1</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+            
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="iS2" ng-click="addS(2)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!ingredientS[1].select"></span>
+                  <span class="fa fa-circle" ng-show="ingredientS[1].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Ingrediente S2</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="iS3" ng-click="addS(3)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!ingredientS[2].select"></span>
+                  <span class="fa fa-circle" ng-show="ingredientS[2].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Ingrediente S3</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="iS4" ng-click="addS(4)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!ingredientS[3].select"></span>
+                  <span class="fa fa-circle" ng-show="ingredientS[3].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Ingrediente S4</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+            
+            <div class="row"><hr></div>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <a ng-click="inAdd = !inAdd" class="btn btn-lg btn-link btn-block" role="button" style="margin-top:5px;">
+          Ingredientes Adicionales
+          <span class="glyphicon glyphicon-chevron-down" ng-show="!inAdd"></span>
+          <span class="glyphicon glyphicon-chevron-up" ng-show="inAdd"></span>
+        </a>
+        <div class="row scrollableRow">
+          <div class="col-md-12 col-sm-12 col-xs-12 scrollableContainer" ng-show="inAdd">
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="iA1" ng-click="addA(1)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!ingredientA[0].select"></span>
+                  <span class="fa fa-circle" ng-show="ingredientA[0].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Ingrediente A1</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+            
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="iA2" ng-click="addA(2)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!ingredientA[1].select"></span>
+                  <span class="fa fa-circle" ng-show="ingredientA[1].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Ingrediente A2</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="iA3" ng-click="addA(3)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!ingredientA[2].select"></span>
+                  <span class="fa fa-circle" ng-show="ingredientA[2].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Ingrediente A3</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+
+            <div class="row"><hr></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 ingredientContainer" id="iA4" ng-click="addA(4)">
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainer" align="center">
+                  <span class="fa fa-circle-thin" ng-show="!ingredientA[3].select"></span>
+                  <span class="fa fa-circle" ng-show="ingredientA[3].select"></span>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer">
+                  <span class="h4">Ingrediente A4</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 ingredientContainerImg" align="center">
+                  <img width="40" height="50" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+                </div>
+                <hr>
+              </div>
+            </div>
+            
+            <div class="row"><hr></div>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+
+    <div class="row text-center" ng-if="warning">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="alert alert-warning">
+          <span class="h4">{{warning}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <br>
+        <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+          <a ng-click="doOrder()" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Realizar Pedido</a>
+        </div>
+      </div>
+    <div class="row">
+      <br>
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
         <a href="/pedir" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Volver</a>
       </div>

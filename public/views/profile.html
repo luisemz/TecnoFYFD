@@ -44,11 +44,11 @@
     <form ng-show="form">
       <img class="img-circle" alt="Profile Image" src="assets/images/profile.png" height="200" width="200">
       <span class="help-block h5">Nombre de usuario:</span>
-      <input type="tex" name="nick" class="form-control text-center" placeholder="Nombre de usuario" ng-model="user.nick" required>
+      <input type="text" name="nick" class="form-control text-center" placeholder="Nombre de usuario" ng-model="user.nick" required>
       <span class="help-block h5">Nombre:</span>
-      <input type="tex" name="name" class="form-control text-center" placeholder="Nombre" ng-model="user.name">
+      <input type="text" name="name" class="form-control text-center" placeholder="Nombre" ng-model="user.name">
       <span class="help-block h5">Apellido:</span>
-      <input type="tex" name="lastName" class="form-control text-center" placeholder="Apellido" ng-model="user.lastName">
+      <input type="text" name="lastName" class="form-control text-center" placeholder="Apellido" ng-model="user.lastName">
       <hr>
       <div class="alert alert-danger" ng-if="error">
         <p class="h5">{{error}}</p>

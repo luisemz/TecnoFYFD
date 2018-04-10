@@ -113,6 +113,43 @@
 .border-left {
   border-left: solid 1px #323232 !important;
 }
+.scrollableRow {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.scrollableContainer {
+  border: solid 1px #323232;
+  border-radius: 10px;
+  height: 250px;
+  overflow-y: scroll;
+}
+.scrollableContainer:hover,
+.scrollableContainer:focus {
+  border: solid 1px orange;
+  box-shadow: 0 0 8px 2px rgba(255, 165, 0, 0.19);
+}
+.ingredientContainer {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  line-height: 50px;
+  height: 40px;
+}
+.ingredientContainerImg {
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 40px;
+}
+.ingredientContainerImg img {
+  padding-bottom: 20%;
+}
+.ingredientSelect {
+  background-color: rgba(255, 165, 0, 0.7);
+  border-radius: 10px;
+}
+.plateSelect {
+  background-color: rgba(255, 165, 0, 0.7);
+  border-radius: 10px;
+}
 .footer {
   position: fixed;
   bottom: 0;
@@ -3646,7 +3683,7 @@ fieldset[disabled] .btn-danger.focus {
 }
 .btn-link {
   font-weight: normal;
-  color: #337ab7;
+  color: orange;
   border-radius: 0;
 }
 .btn-link,
@@ -3666,7 +3703,7 @@ fieldset[disabled] .btn-link {
 }
 .btn-link:hover,
 .btn-link:focus {
-  color: #23527c;
+  color: #323232;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -4817,11 +4854,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #333;
 }
 .navbar-default .btn-link {
-  color: #777;
+  color: orange;
 }
 .navbar-default .btn-link:hover,
 .navbar-default .btn-link:focus {
-  color: #333;
+  color: #323232;
 }
 .navbar-default .btn-link[disabled]:hover,
 fieldset[disabled] .navbar-default .btn-link:hover,
