@@ -161,7 +161,7 @@ function($scope, $localStorage, $rootScope, $timeout){
 // PEDIR CREAR CONTROLLER ==================================================
 // =========================================================================
 app.controller('pedirCrearCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
-function($scope, $localStorage, $rootScope, $timeout){
+'$location', function($scope, $localStorage, $rootScope, $timeout, $location){
   let order = {};
   order.ingredientA = [];
 
@@ -279,7 +279,8 @@ function($scope, $localStorage, $rootScope, $timeout){
             order.type = type;
             order.namePlate = $scope.namePlate;
             //$localStorage.user.order = order;
-          console.log(order)
+            $location.path('/pedir/facturar');
+            console.log(order)
           } else {
             logoutSession($scope, $http, $localStorage, $window);
           }
@@ -299,7 +300,7 @@ function($scope, $localStorage, $rootScope, $timeout){
 // PEDIR MENU CONTROLLER ===================================================
 // =========================================================================
 app.controller('pedirMenuCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
-function($scope, $localStorage, $rootScope, $timeout){
+'$location', function($scope, $localStorage, $rootScope, $timeout, $location){
   let order = {};
 
   $scope.plate = [
@@ -351,6 +352,7 @@ function($scope, $localStorage, $rootScope, $timeout){
       if (typeof $localStorage.user != 'undefined') {
         order.type = type;
         //$localStorage.user.order = order;
+        $location.path('/pedir/facturar');
         console.log(order)
       } else {
         logoutSession($scope, $http, $localStorage, $window);
@@ -359,6 +361,14 @@ function($scope, $localStorage, $rootScope, $timeout){
       $scope.warning = "Debes seleccionar un plato.";
     }
   }
+}]);
+
+// =========================================================================
+// PEDIR FACTURAR CONTROLLER ===============================================
+// =========================================================================
+app.controller('pedirFacturarCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
+function($scope, $localStorage, $rootScope, $timeout){
+
 }]);
 
 // =========================================================================

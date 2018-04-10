@@ -70,6 +70,19 @@ angular.module('router', ['ui.router'])
         }
       }
     })
+    .state('pedirFacturar',{
+      url: '/pedir/facturar',
+      views: {
+        'pedirFacturar': {
+          templateUrl: 'views/pedir-facturar.html',
+          controller: 'pedirFacturarCtrl'
+        },
+        'navbar': {
+          templateUrl: 'views/navbar.html',
+          controller: 'mainCtrl'
+        }
+      }
+    })
     .state('calificar',{
       url: '/calificar',
       views: {
