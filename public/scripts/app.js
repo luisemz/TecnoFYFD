@@ -202,11 +202,13 @@ function($scope, $localStorage, $rootScope, $timeout){
 
     if ($scope.ingredientP[i].select) {
       angular.element(element).addClass("ingredientSelect");
+      $scope.iP = true;
       let ingredientP = $scope.ingredientP[i];
       ingredientP.index = i;
       order.ingredientP = ingredientP;
     } else {
       angular.element(element).removeClass("ingredientSelect");
+      $scope.iP = false;
       delete order.ingredientP;
     }
   }
@@ -229,11 +231,13 @@ function($scope, $localStorage, $rootScope, $timeout){
 
     if ($scope.ingredientS[i].select) {
       angular.element(element).addClass("ingredientSelect");
+      $scope.iS = true;
       let ingredientS = $scope.ingredientS[i];
       ingredientS.index = i;
       order.ingredientS = ingredientS;
     } else {
       angular.element(element).removeClass("ingredientSelect");
+      $scope.iS = false;
       delete order.ingredientS;
     }
   }
@@ -264,15 +268,23 @@ function($scope, $localStorage, $rootScope, $timeout){
     }
   }
 
-  $scope.doOrder = function () {
+  $scope.doOrder = function (type) {
     delete $scope.warning;
     
     if (typeof order.ingredientP != 'undefined') {
       if (typeof order.ingredientS != 'undefined') {
-        if (typeof $localStorage.user != 'undefined') {
-          $localStorage.user.order = order;
+        if (typeof $scope.namePlate != 'undefined' 
+            && $scope.namePlate.length > 0) {
+          if (typeof $localStorage.user != 'undefined') {
+            order.type = type;
+            order.namePlate = $scope.namePlate;
+            //$localStorage.user.order = order;
+          console.log(order)
+          } else {
+            logoutSession($scope, $http, $localStorage, $window);
+          }
         } else {
-          logoutSession($scope, $http, $localStorage, $window);
+          $scope.warning = "El nombre del plato no puede estar vacio.";
         }
       } else {
         $scope.warning = "Debes seleccionar el ingrediente secundario.";
@@ -291,18 +303,18 @@ function($scope, $localStorage, $rootScope, $timeout){
   let order = {};
 
   $scope.plate = [
-    {select: false,price: 90000},
-    {select: false,price: 8000},
-    {select: false,price: 8000},
-    {select: false,price: 10000},
-    {select: false,price: 12000},
-    {select: false,price: 12000},
-    {select: false,price: 14000},
-    {select: false,price: 15000},
-    {select: false,price: 13000},
-    {select: false,price: 12000},
-    {select: false,price: 15000},
-    {select: false,price: 17000}
+    {select: false,name: 'Básico1',price: 90000},
+    {select: false,name: 'Básico2',price: 8000},
+    {select: false,name: 'Básico3',price: 8000},
+    {select: false,name: 'Básico4',price: 10000},
+    {select: false,name: 'Especial1',price: 12000},
+    {select: false,name: 'Especial2',price: 12000},
+    {select: false,name: 'Especial3',price: 14000},
+    {select: false,name: 'Especial4',price: 15000},
+    {select: false,name: 'Creado1',price: 13000},
+    {select: false,name: 'Creado2',price: 12000},
+    {select: false,name: 'Creado3',price: 15000},
+    {select: false,name: 'Creado4',price: 17000}
   ];
 
   $scope.addPlate = function (index) {
@@ -332,11 +344,12 @@ function($scope, $localStorage, $rootScope, $timeout){
     }
   }
 
-  $scope.doOrder = function () {
+  $scope.doOrder = function (type) {
     delete $scope.warning;
     
     if (typeof order.plate != 'undefined') {
       if (typeof $localStorage.user != 'undefined') {
+        order.type = type;
         //$localStorage.user.order = order;
         console.log(order)
       } else {
