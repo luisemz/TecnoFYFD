@@ -9,13 +9,216 @@
 
 <div class="row">
   <div class="col-md-12 text-center">
+    <div class="row" ng-if="orderC">
+      <div class="col-md-12">
+        <div class="row">
+          <br>
+          <span class="h3">{{orderC.type}}</span>
+        </div>
+
+        <div class="row"><hr></div>
+
+        <div class="row">
+          <span class="h4">{{orderC.namePlate}}</span>
+        </div>
+
+        <div class="row">
+          <img width="100" height="100" src="assets/images/plato.png" alt="Imágen Ingrediente">
+        </div>
+
+        <div class="row"><br></div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6 ingredientContainer" align="center">
+            <span class="h4">Ingrediente P</span>
+          </div>
+          <div class="col-md-2 col-sm-2 col-xs-2" align="left">
+            <img width="40" height="40" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-4 ingredientContainer" align="center">
+            <span class="h4">{{orderC.ingredientP.price | nfcurrency}}</span>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-md-6 col-sm-6 col-xs-6 ingredientContainer" align="center">
+            <span class="h4">Ingrediente S</span>
+          </div>
+          <div class="col-md-2 col-sm-2 col-xs-2" align="left">
+            <img width="40" height="40" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-4 ingredientContainer" align="center">
+            <span class="h4">{{orderC.ingredientS.price | nfcurrency}}</span>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 10px;" ng-repeat="s in orderC.ingredientA">
+          <div class="col-md-6 col-sm-6 col-xs-6 ingredientContainer" align="center">
+            <span class="h4">Ingrediente A{{$index + 1}}</span>
+          </div>
+          <div class="col-md-2 col-sm-2 col-xs-2" align="left">
+            <img width="40" height="40" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-4 ingredientContainer" align="center">
+            <span class="h4">{{s.price | nfcurrency}}</span>
+          </div>
+        </div>
+
+        <div class="row"><hr></div>
+
+        <div class="row">
+          <div class="col-mde-12 col-sm-12 col-xs-12">
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-6" align="right">
+                <span class="h4">Subtotal</span>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6" align="left">
+                <span class="h4">{{orderC.pay.sub}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-6" align="right">
+                <span class="h4">Iva</span>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6" align="left">
+                <span class="h4">{{orderC.pay.iva}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-6" align="right">
+                <span class="h4">Servicio</span>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6" align="left">
+                <span class="h4">{{orderC.pay.ser}}</span>
+              </div>
+            </div>
+
+            <div class="row"><br></div>
+
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-6" align="right">
+                <span class="h4">Total</span>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6" align="left">
+                <span class="h4">{{orderC.pay.total}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row"><hr></div>
+      </div>
+    </div>
+
+    <div class="row" ng-if="orderP">
+      <div class="col-md-12">
+        <div class="row">
+          <br>
+          <span class="h3">{{orderP.type}}</span>
+        </div>
+
+        <div class="row"><hr></div>
+
+        <div class="row">
+          <span class="h4">{{orderP.namePlate}}</span>
+        </div>
+
+        <div class="row">
+          <img width="100" height="100" src="assets/images/plato.png" alt="Imágen Ingrediente">
+        </div>
+
+        <div class="row"><br></div>
+
+        <div class="row">
+          <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer" align="center">
+            <span class="h4">Ingrediente 1</span>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-4" align="left">
+            <img width="40" height="40" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+          </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer" align="center">
+            <span class="h4">Ingrediente 2</span>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-4" align="left">
+            <img width="40" height="40" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+          </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer" align="center">
+            <span class="h4">Ingrediente 3</span>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-4" align="left">
+            <img width="40" height="40" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+          </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+          <div class="col-md-8 col-sm-8 col-xs-8 ingredientContainer" align="center">
+            <span class="h4">Ingrediente 4</span>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-4" align="left">
+            <img width="40" height="40" src="assets/images/ingrediente.png" alt="Imágen Ingrediente">
+          </div>
+        </div>
+
+        <div class="row"><hr></div>
+
+        <div class="row">
+          <div class="col-mde-12 col-sm-12 col-xs-12">
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-6" align="right">
+                <span class="h4">Subtotal</span>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6" align="left">
+                <span class="h4">{{orderP.pay.sub}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-6" align="right">
+                <span class="h4">Iva</span>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6" align="left">
+                <span class="h4">{{orderP.pay.iva}}</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-6" align="right">
+                <span class="h4">Servicio</span>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6" align="left">
+                <span class="h4">{{orderP.pay.ser}}</span>
+              </div>
+            </div>
+
+            <div class="row"><br></div>
+
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-6" align="right">
+                <span class="h4">Total</span>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6" align="left">
+                <span class="h4">{{orderP.pay.total}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row"><hr></div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="orderOk">
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+        <div class="alert alert-warning">
+          <span class="h4">Su pedido ya se esta realizando.</span>
+        </div>
+      </div>
+    </div>
 
     <div class="row">
-      <br>
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
-        <a ng-click="" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Aceptar</a>
+        <a ng-show="!orderOk" ng-click="checkIn()" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Pedir</a>
         <br>
-        <a ng-click="" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Cancelar</a>
+        <a ng-click="cancelOrder()" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Cancelar</a>
       </div>
     </div>
   </div>

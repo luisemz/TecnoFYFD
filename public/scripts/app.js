@@ -1,6 +1,21 @@
 var app = angular.module('app', ['ui.bootstrap','ui.router','router',
 'ngStorage','ng-file-model','angularModalService']);
 
+app.filter('nfcurrency', ['$filter', '$locale', function currency($filter, $locale) {
+    var currencyFilter = $filter('currency');
+    var formats = $locale.NUMBER_FORMATS;
+    return function (amount, currencySymbol) {
+        if (typeof amount !== 'undefined' && amount !== null) {
+            var value = currencyFilter(amount, currencySymbol);
+            var sep = value.indexOf(formats.DECIMAL_SEP);
+            if (amount >= 0) {
+                return value.substring(0, sep);
+            }
+            return value.substring(0, sep) + ')';
+        }
+    };
+}]);
+
 // =========================================================================
 // NAVBAR CONTROLLER =======================================================
 // =========================================================================
@@ -153,8 +168,10 @@ function($scope, $localStorage, $rootScope,$timeout){
 // PEDIR CONTROLLER ========================================================
 // =========================================================================
 app.controller('pedirCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
-function($scope, $localStorage, $rootScope, $timeout){
-
+'$location', function($scope, $localStorage, $rootScope, $timeout, $location){
+  if (typeof $localStorage.user.order != 'undefined') {
+    $location.path('/pedir/facturar');
+  }
 }]);
 
 // =========================================================================
@@ -277,10 +294,10 @@ app.controller('pedirCrearCtrl', ['$scope', '$localStorage', '$rootScope','$time
             && $scope.namePlate.length > 0) {
           if (typeof $localStorage.user != 'undefined') {
             order.type = type;
+            order.orderOk = false;
             order.namePlate = $scope.namePlate;
-            //$localStorage.user.order = order;
+            $localStorage.user.order = order;
             $location.path('/pedir/facturar');
-            console.log(order)
           } else {
             logoutSession($scope, $http, $localStorage, $window);
           }
@@ -351,9 +368,9 @@ app.controller('pedirMenuCtrl', ['$scope', '$localStorage', '$rootScope','$timeo
     if (typeof order.plate != 'undefined') {
       if (typeof $localStorage.user != 'undefined') {
         order.type = type;
-        //$localStorage.user.order = order;
+        order.orderOk = false;
+        $localStorage.user.order = order;
         $location.path('/pedir/facturar');
-        console.log(order)
       } else {
         logoutSession($scope, $http, $localStorage, $window);
       }
@@ -367,8 +384,92 @@ app.controller('pedirMenuCtrl', ['$scope', '$localStorage', '$rootScope','$timeo
 // PEDIR FACTURAR CONTROLLER ===============================================
 // =========================================================================
 app.controller('pedirFacturarCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
-function($scope, $localStorage, $rootScope, $timeout){
+'$window', '$location', 'ModalService', function($scope, $localStorage, $rootScope, $timeout, 
+$window, $location, ModalService){
+  if (typeof $localStorage.user.order != 'undefined') {
+    let orderC = {};
+    let orderP = {};
+    let pay = {};
 
+    $scope.orderOk = $localStorage.user.order.orderOk;
+
+    if ($localStorage.user.order.type == 'Crear Plato') {
+      orderC.type = $localStorage.user.order.type;
+      orderC.namePlate = $localStorage.user.order.namePlate;
+      orderC.ingredientP = $localStorage.user.order.ingredientP;
+      orderC.ingredientS = $localStorage.user.order.ingredientS;
+      orderC.ingredientA = $localStorage.user.order.ingredientA.filter(el => { return el });
+
+      pay.sub = orderC.ingredientP.price;
+      pay.sub += orderC.ingredientS.price;
+      orderC.ingredientA.forEach(el => {
+        if (typeof el != 'undefined') {
+          pay.sub += el.price;
+        }
+      });
+      pay.iva = Math.round(pay.sub * 0.19);
+      pay.ser = Math.round(pay.sub * 0.15);
+      pay.total = Math.round(pay.sub + pay.iva + pay.ser);
+      
+      pay.sub = moneyFormt(pay.sub);
+      pay.iva = moneyFormt(pay.iva);
+      pay.ser = moneyFormt(pay.ser);
+      pay.total = moneyFormt(pay.total);
+
+      orderC.pay = pay;
+
+      $scope.orderC = orderC;
+    } else if ($localStorage.user.order.type == 'Plato') {
+      orderP.type = $localStorage.user.order.type;
+      orderP.namePlate = $localStorage.user.order.plate.name;
+
+      pay.sub = $localStorage.user.order.plate.price;
+      pay.iva = Math.round(pay.sub * 0.19);
+      pay.ser = Math.round(pay.sub * 0.15);
+      pay.total = Math.round(pay.sub + pay.iva + pay.ser);
+
+      pay.sub = moneyFormt(pay.sub);
+      pay.iva = moneyFormt(pay.iva);
+      pay.ser = moneyFormt(pay.ser);
+      pay.total = moneyFormt(pay.total);
+
+      orderP.pay = pay;
+
+      $scope.orderP = orderP;
+    }
+
+    $scope.checkIn = function () {
+      $localStorage.user.order.orderOk = !$localStorage.user.order.orderOk;
+      $window.location.reload();
+    }
+
+    $scope.cancelOrder = function() {
+      let order;
+      if (typeof $scope.orderC != 'undefined')
+        order = $scope.orderC;
+      if (typeof $scope.orderP != 'undefined')
+        order = $scope.orderP;
+
+      ModalService.showModal({
+        templateUrl: "views/modal.html",
+        controller: "modalCtrl",
+        inputs: {
+          title: "Cancelar Pedido",
+          account: order
+        }
+      }).then(function(modal) {
+        modal.element.modal();
+        modal.close.then(function(result) {
+          if (result.order) {
+            delete $localStorage.user.order;
+            $location.path('/pedir');
+          }
+        });
+      });
+    }
+  } else {
+    $location.path('/pedir');
+  }
 }]);
 
 // =========================================================================
@@ -567,202 +668,6 @@ function($scope, $http, $location, $localStorage, $window, ModalService){
 }]);
 
 // =========================================================================
-// USERS CONTROLLER ========================================================
-// =========================================================================
-app.controller('usersCtrl', ['$scope', '$http', '$location', '$localStorage',
-'$window', 'ModalService',
-function($scope, $http, $location, $localStorage, $window, ModalService){
-  delete $localStorage.addDesc;
-
-  $http.get('/api/users')
-    .success(function(response) {
-      if (response.msgAdmin) {
-        $localStorage.sessionTerminated = false;
-        if (response.msgAdmin.length > 1) {
-          $scope.welcome = response.msgAdmin[0];
-          $scope.adminUser = response.msgAdmin[1];
-        } else {
-          var active = 0;
-          var disable = 0;
-          $scope.helloAdmin = response.msgAdmin[0];
-          $scope.users = response.users;
-          if (response.users == 0) {
-            $scope.noUsers = "No hay usuarios registrados!"
-          }
-          response.users.forEach(function(user) {
-            if (user.local) {
-              if (user.local.state) {
-                active += 1;
-              } else {
-                disable += 1;
-              }
-            } else if (user.facebook) {
-              if (user.facebook.state) {
-                active += 1;
-              } else {
-                disable += 1;
-              }
-            } else if (user.google) {
-              if (user.google.state) {
-                active += 1;
-              } else {
-                disable += 1;
-              }
-            }
-          });
-          $scope.active = active;
-          $scope.disable = disable;
-        }
-      } else if (response.error) {
-        $localStorage.sessionTerminated = false;
-        $scope.errorAccount = response.error;
-        console.log(response.error);
-      } else {
-        $localStorage.sessionTerminated = true;
-        logoutSession($scope, $http, $localStorage, $window);
-      }
-    })
-    .error(function(response) {
-        console.log('Error: ' + response);
-    });
-
-  $scope.close = function() {
-    delete $scope.errorAccount;
-    delete $scope.error;
-    delete $scope.success;
-    $window.location.reload();
-  }
-
-  // =======================================================================
-  // ADMIN FUNCTION ========================================================
-  // =======================================================================
-  $scope.findByName = function(name) {
-    if (name) {
-      $http.get('/api/users/searchN/' + name)
-        .success(function(response){
-          search(response, name);
-        })
-        .error(function(response){
-          console.log("Error: " + response);
-        });
-    }
-  }
-
-  $scope.findByEmail = function(email) {
-    if (email) {
-      $http.get('/api/users/searchE/' + email)
-        .success(function(response){
-          search(response, email);
-        })
-        .error(function(response){
-          console.log("Error: " + response);
-        });
-    }
-  }
-
-  $scope.viewUser = function(user) {
-    $location.path('/web/user/' + user._id)
-  }
-
-  $scope.restorePasswordUser = function(user) {
-    ModalService.showModal({
-      templateUrl: "views/modal.html",
-      controller: "modalCtrl",
-      inputs: {
-        title: "Restaurar Contraseña de Usuario",
-        account: user
-      }
-    }).then(function(modal) {
-      modal.element.modal();
-      modal.close.then(function(result) {
-        var user = result.user;
-        user.action = "restore";
-
-        updateUser(user);
-      });
-    });
-  }
-
-  $scope.activeUser = function(user) {
-    ModalService.showModal({
-      templateUrl: "views/modal.html",
-      controller: "modalCtrl",
-      inputs: {
-        title: "Activar Usuario",
-        account: user
-      }
-    }).then(function(modal) {
-      modal.element.modal();
-      modal.close.then(function(result) {
-        var user = result.user;
-        user.action = "active";
-
-        updateUser(user);
-      });
-    });
-  }
-
-  $scope.disableUser = function(user) {
-    ModalService.showModal({
-      templateUrl: "views/modal.html",
-      controller: "modalCtrl",
-      inputs: {
-        title: "Desactivar Usuario",
-        account: user
-      }
-    }).then(function(modal) {
-      modal.element.modal();
-      modal.close.then(function(result) {
-        var user = result.user;
-        user.action = "disable";
-
-        updateUser(user);
-      });
-    });
-  }
-
-  $scope.clear = function() {
-    $scope.searchUser = false;
-    delete $scope.findUsers;
-    delete $scope.noUsersFound;
-    delete $scope.nameFound;
-  }
-
-  function search(response, query) {
-    $scope.searchUser = true;
-    if (response.userSearch) {
-      if (response.userSearch.length > 0) {
-        delete $scope.noUsersFound;
-        $scope.findUsers = response.userSearch;
-        $scope.findCount = response.userSearch.length;
-      } else {
-        delete $scope.findUsers;
-        $scope.noUsersFound = "No user found to:";
-        $scope.nameFound = query;
-      }
-    } else {
-      $localStorage.sessionTerminated = true;
-      logoutSession($scope, $http, $localStorage, $window);
-    }
-  }
-
-  function updateUser(user) {
-    $http.put('/api/users/' + user.id, user)
-      .success(function(response){
-        if (response.success) {
-          $scope.success = response.success;
-        } else if (response.error) {
-          $scope.error = response.error;
-        }
-      })
-      .error(function(response){
-        console.log("Error: " + response);
-      });
-  }
-
-}]);
-
-// =========================================================================
 // PROFILE CONTROLLER ======================================================
 // =========================================================================
 app.controller('profileCtrl', ['$scope', '$http', '$localStorage', '$window',
@@ -849,7 +754,6 @@ function($scope, $http, $localStorage, $window, ModalService){
       modal.element.modal();
       modal.close.then(function(result) {
         if (result.user) {
-          console.log(result);
           $localStorage.profileDelete = true;
           $localStorage.profileName = result.user.name;
           $localStorage.profileEmail = result.user.email;
@@ -872,7 +776,9 @@ function($scope, $element, title, account, close) {
   if (title === 'Eliminar Perfil') {
     $scope.deleteProfile = "Está seguro(a) de eliminar el perfil:";
     $scope.user = {};
-    getUser(account);
+    $scope.user.type = "local";
+    $scope.user.name = account.nick;
+    $scope.user.email = account.email;
 
     $scope.disable = function(user){
       if (user) {
@@ -885,12 +791,23 @@ function($scope, $element, title, account, close) {
       }
     }
   }
+  
+  else if ('Cancelar Pedido') {
+    $scope.cancelOrder = "Está seguro(a) de cancelar el pedido:";
+    $scope.order = {};
+    $scope.order.type = account.type;
+    $scope.order.namePlate = account.namePlate;
+    $scope.order.total = account.pay.total;
 
-  function getUser(user) {
-    if (user) {
-      $scope.user.type = "local";
-      $scope.user.name = user.nick;
-      $scope.user.email = user.email;
+    $scope.disable = function(order){
+      if (order) {
+        delete $scope.error;
+        $element.modal('hide');
+
+        close({
+          order: order
+        }, 500);
+      }
     }
   }
 }]);
@@ -900,4 +817,8 @@ function logoutSession($scope, $http, $localStorage, $window){
   delete $scope.navbarHome;
   $scope.navbarIndex = {};
   $window.location = $window.location.protocol + "//" + $window.location.host + "/";
+}
+
+function moneyFormt(x) {
+  return '$ ' + x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
