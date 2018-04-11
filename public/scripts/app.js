@@ -81,8 +81,9 @@ app.controller('mainCtrl', ['$scope', '$http', '$location', '$localStorage',
 // =========================================================================
 // RESERVAR CONTROLLER =====================================================
 // =========================================================================
-app.controller('reservarCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
-function($scope, $localStorage, $rootScope,$timeout){
+app.controller('reservarCtrl', ['$scope', '$localStorage', '$rootScope', 
+'$timeout', 'ModalService', function($scope, $localStorage, $rootScope, $timeout,
+ModalService){
 
   if (typeof $localStorage.user.reserve != 'undefined') {
     $scope.reserveDo = $localStorage.user.reserve;
@@ -144,11 +145,12 @@ function($scope, $localStorage, $rootScope,$timeout){
     }
   }
 
-  $scope.ok = function () {
+  $scope.ok = function (reload) {
     delete $scope.success;
     delete $scope.successDelete;
     window.scrollTo(0, 0);
-    window.location.reload();
+    if (reload)
+      window.location.reload();
   }
 
   $scope.cancel = function () {
@@ -157,10 +159,24 @@ function($scope, $localStorage, $rootScope,$timeout){
     delete $scope.success;
   }
 
-  $scope.deleteReserve = function () {
-    delete $localStorage.user.reserve;
-    delete $scope.reserveDo;
-    $scope.successDelete = 'Reserva cancelada exitosamente.';
+  $scope.deleteReserve = function (reserve) {
+    ModalService.showModal({
+      templateUrl: "views/modal.html",
+      controller: "modalCtrl",
+      inputs: {
+        title: "Cancelar Reserva",
+        account: reserve
+      }
+    }).then(function(modal) {
+      modal.element.modal();
+      modal.close.then(function(result) {
+        if (result.reserve) {
+          delete $localStorage.user.reserve;
+          delete $scope.reserveDo;
+          $scope.successDelete = 'Reserva cancelada exitosamente.';
+        }
+      });
+    });
   }
 }]);
 
@@ -792,7 +808,7 @@ function($scope, $element, title, account, close) {
     }
   }
   
-  else if ('Cancelar Pedido') {
+  else if (title === 'Cancelar Pedido') {
     $scope.cancelOrder = "Está seguro(a) de cancelar el pedido:";
     $scope.order = {};
     $scope.order.type = account.type;
@@ -806,6 +822,25 @@ function($scope, $element, title, account, close) {
 
         close({
           order: order
+        }, 500);
+      }
+    }
+  }
+  
+  else if (title === 'Cancelar Reserva') {
+    $scope.cancelReserve = "Está seguro(a) de cancelar la reserva:";
+    $scope.reserve = {};
+    $scope.reserve.table = account.table;
+    $scope.reserve.date = account.date;
+    $scope.reserve.time = account.time;
+
+    $scope.disable = function(reserve){
+      if (reserve) {
+        delete $scope.error;
+        $element.modal('hide');
+
+        close({
+          reserve: reserve
         }, 500);
       }
     }

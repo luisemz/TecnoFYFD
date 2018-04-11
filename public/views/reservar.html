@@ -13,7 +13,7 @@
     <div class="alert alert-success">
       <span class="h4">{{successDelete}}</span>
       <hr>
-      <a ng-click="ok()" class="btn btn-sm btn-success btn-block" role="button">Aceptar</a>  
+      <a ng-click="ok(false)" class="btn btn-sm btn-success btn-block" role="button">Aceptar</a>  
     </div>
   </div>
 </div>
@@ -36,7 +36,7 @@
     <br>
     <div class="row">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
-        <a ng-click="deleteReserve()" class="btn btn-md btn-danger btn-block" role="button" style="margin-top:5px;">Eliminar Reserva</a>
+        <a ng-click="deleteReserve(reserveDo)" class="btn btn-md btn-danger btn-block" role="button" style="margin-top:5px;">Eliminar Reserva</a>
       </div>
     </div>
   <hr>
@@ -286,7 +286,7 @@
       <br>
       <span class="h4">Hora: {{time | date:'HH:mm'}}</span>
       <hr>
-      <a ng-click="ok()" class="btn btn-sm btn-success btn-block" role="button">Aceptar</a>  
+      <a ng-click="ok(true)" class="btn btn-sm btn-success btn-block" role="button">Aceptar</a>  
     </div>
   </div>
 </div>

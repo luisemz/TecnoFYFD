@@ -37,6 +37,21 @@
           </div>
         </div>
 
+        <div ng-if="cancelReserve">
+          <p class="h4">{{cancelReserve}}</p>
+          <p class="h4 text-uppercase text-primary">Mesa {{reserve.table}}</p>
+          <p class="h4">Fecha:</p>
+          <p class="h4 text-uppercase text-primary">{{reserve.date | date:'yyyy-MM-dd'}}</p>
+          <p class="h4">Hora:</p>
+          <p class="h4 text-primary">{{reserve.time | date:'HH:mm'}}</p>
+          <br>
+          <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
+              <button type="submit" ng-click="disable(reserve)" class="btn btn-danger btn-block">Cancelar Reserva</button>
+            </div>
+          </div>
+        </div>
+
         <div ng-if="error"><hr></div>
         <div class="alert alert-danger" ng-if="error">
           {{error}}

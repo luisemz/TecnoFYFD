@@ -308,13 +308,15 @@
     <div class="row text-center" ng-show="iP && iS">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
         <input type="text" name="namePlate" class="form-control text-center" placeholder="Nombre del plato" ng-model="namePlate">
+        <br>
+        <a ng-click="doOrder('Crear Plato')" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Guardar y Pedir</a>
       </div>
     </div>
 
     <div class="row">
       <br>
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
-        <a ng-click="doOrder('Crear Plato')" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Realizar Pedido</a>
+        <a ng-click="doOrder('Crear Plato')" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Pedir</a>
       </div>
     </div>
     <div class="row">
