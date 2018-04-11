@@ -501,7 +501,38 @@ function($scope, $localStorage, $rootScope, $timeout){
 // =========================================================================
 app.controller('musicaCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
 function($scope, $localStorage, $rootScope, $timeout){
+  $scope.tracks = [
+    {name: 'Dreamer', artist: 'Axwell & Ingrosso', duration: '4:11'},
+    {name: 'Finesse', artist: 'Bruno Mars', duration: '3:37'},
+    {name: 'Disfruto', artist: 'Carla Morrison', duration: '4:07'},
+    {name: 'I\'m the One', artist: 'Dj Khaled', duration: '4:49'},
+    {name: 'Signs', artist: 'Drake', duration: '3:54'}
+  ];
 
+  $scope.addTrack = function () {
+    if (typeof $scope.artist != 'undefined'
+        && $scope.artist.length > 0) {
+      if (typeof $scope.nameTrack != 'undefined'
+          && $scope.nameTrack.length > 0) {
+        var name = $scope.nameTrack;
+        var artist = $scope.artist;
+        var min = Math.floor((Math.random() * 5) + 1);
+        var sec = Math.floor((Math.random() * 60) + 1);
+        var duration = min + ':' + sec;
+        $scope.tracks.push(
+          {
+            name: name.replace(/\b\w/g, function(l){ return l.toUpperCase() }),
+            artist: artist.replace(/\b\w/g, function(l){ return l.toUpperCase() }),
+            duration: duration
+          }
+        );
+
+        $scope.addM = false;
+        $scope.artist = '';
+        $scope.nameTrack = '';
+      }
+    }
+  }
 }]);
 
 // =========================================================================

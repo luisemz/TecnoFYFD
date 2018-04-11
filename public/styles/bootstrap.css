@@ -123,6 +123,9 @@
   height: 250px;
   overflow-y: scroll;
 }
+.large {
+  height: 350px;
+}
 .scrollableContainer:hover,
 .scrollableContainer:focus {
   border: solid 1px orange;
@@ -149,6 +152,26 @@
 .plateSelect {
   background-color: rgba(255, 165, 0, 0.7);
   border-radius: 10px;
+}
+.trackContainer {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  line-height: 0;
+  height: 40px;
+}
+.trackContainerImg {
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 40px;
+}
+.trackContainerImg img {
+  padding-top: 20%;
+}
+.trackBackground {
+  background-color: rgba(0, 255, 255, .3);
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 .footer {
   position: fixed;
