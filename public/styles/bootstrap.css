@@ -113,6 +113,9 @@
 .border-left {
   border-left: solid 1px #323232 !important;
 }
+.large {
+  height: 350px;
+}
 .scrollableRow {
   padding-left: 5%;
   padding-right: 5%;
@@ -123,8 +126,11 @@
   height: 250px;
   overflow-y: scroll;
 }
-.large {
-  height: 350px;
+.scrollableContainerScore {
+  border: solid 1px #323232;
+  border-radius: 10px;
+  height: 400px;
+  overflow-y: scroll;
 }
 .scrollableContainer:hover,
 .scrollableContainer:focus {
