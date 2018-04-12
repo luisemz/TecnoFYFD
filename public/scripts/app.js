@@ -493,7 +493,43 @@ $window, $location, ModalService){
 // =========================================================================
 app.controller('calificarCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
 function($scope, $localStorage, $rootScope, $timeout){
+  $scope.plates = [
+    {name: 'Dorado', score: '4.1'},
+    {name: 'Dreamer', score: '4.5'},
+    {name: 'Chancho', score: '3.5'},
+    {name: 'Pillelo', score: '3.8'},
+    {name: 'JogoBonito', score: '4.5'},
+    {name: 'Fulles', score: '4.0'},
+    {name: 'Love', score: '4.3'},
+    {name: 'Hungry', score: '3.9'}
+  ];
 
+  $scope.addScore = function (stars, index) {
+    var i;
+    for (i = 0; i < $scope.plates.length ; i++) {
+      let auxCont = document.getElementById("starts"+i);
+      if (angular.element(auxCont).hasClass("scoreSelect")) {
+        angular.element(auxCont).removeClass("scoreSelect");
+      }
+    }
+
+    var j;
+    for (j = 1; j <= 5; j++) {
+      let auxStar = document.getElementById("start"+j+"-"+index);
+      if (angular.element(auxStar).hasClass("fa-star")) {
+        angular.element(auxStar).removeClass("fa-star").addClass("fa-star-o");
+      }
+    }
+
+    var k;
+    for (k = 1; k <= stars; k++) {
+      let star = document.getElementById("start"+k+"-"+index);
+      angular.element(star).removeClass("fa-star-o").addClass("fa-star");
+    }
+
+    let starContainer = document.getElementById("starts"+index);
+    angular.element(starContainer).addClass("scoreSelect");
+  }
 }]);
 
 // =========================================================================

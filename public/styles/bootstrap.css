@@ -128,7 +128,7 @@
 }
 .scrollableContainerScore {
   border-radius: 10px;
-  height: 400px;
+  height: 350px;
   overflow-y: scroll;
 }
 .scrollableContainer:hover,
@@ -177,6 +177,32 @@
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 5px;
+}
+.scoreContainer {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  line-height: 42px;
+  height: 40px;
+}
+.scoreContainerImg {
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 40px;
+}
+.scoreContainerImg img {
+  padding-top: 5px;
+}
+.scoreBackground {
+  background-color: rgba(50, 50, 50, .4);
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.scoreSelect {
+  color: #323232 !important;
+}
+.scoreSelect:hover {
+  color: orange !important;
 }
 .footer {
   position: fixed;
