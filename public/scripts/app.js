@@ -308,14 +308,19 @@ app.controller('pedirCrearCtrl', ['$scope', '$localStorage', '$rootScope','$time
       if (typeof order.ingredientS != 'undefined') {
         if (typeof $scope.namePlate != 'undefined' 
             && $scope.namePlate.length > 0) {
-          if (typeof $localStorage.user != 'undefined') {
-            order.type = type;
-            order.orderOk = false;
-            order.namePlate = $scope.namePlate;
-            $localStorage.user.order = order;
-            $location.path('/pedir/facturar');
+          if (typeof $scope.table != 'undefined') {
+            if (typeof $localStorage.user != 'undefined') {
+              order.type = type;
+              order.table = $scope.table;
+              order.orderOk = false;
+              order.namePlate = $scope.namePlate;
+              $localStorage.user.order = order;
+              $location.path('/pedir/facturar');
+            } else {
+              logoutSession($scope, $http, $localStorage, $window);
+            }
           } else {
-            logoutSession($scope, $http, $localStorage, $window);
+            $scope.warning = "Debes seleccionar tu mesa.";
           }
         } else {
           $scope.warning = "El nombre del plato no puede estar vacio.";
@@ -382,13 +387,18 @@ app.controller('pedirMenuCtrl', ['$scope', '$localStorage', '$rootScope','$timeo
     delete $scope.warning;
     
     if (typeof order.plate != 'undefined') {
-      if (typeof $localStorage.user != 'undefined') {
-        order.type = type;
-        order.orderOk = false;
-        $localStorage.user.order = order;
-        $location.path('/pedir/facturar');
+      if (typeof $scope.table != 'undefined') {
+        if (typeof $localStorage.user != 'undefined') {
+          order.type = type;
+          order.table = $scope.table;
+          order.orderOk = false;
+          $localStorage.user.order = order;
+          $location.path('/pedir/facturar');
+        } else {
+          logoutSession($scope, $http, $localStorage, $window);
+        }
       } else {
-        logoutSession($scope, $http, $localStorage, $window);
+        $scope.warning = "Debes seleccionar tu mesa.";
       }
     } else {
       $scope.warning = "Debes seleccionar un plato.";
@@ -412,6 +422,7 @@ $window, $location, ModalService){
     if ($localStorage.user.order.type == 'Crear Plato') {
       orderC.type = $localStorage.user.order.type;
       orderC.namePlate = $localStorage.user.order.namePlate;
+      orderC.table = $localStorage.user.order.table;
       orderC.ingredientP = $localStorage.user.order.ingredientP;
       orderC.ingredientS = $localStorage.user.order.ingredientS;
       orderC.ingredientA = $localStorage.user.order.ingredientA.filter(el => { return el });
@@ -437,6 +448,7 @@ $window, $location, ModalService){
       $scope.orderC = orderC;
     } else if ($localStorage.user.order.type == 'Plato') {
       orderP.type = $localStorage.user.order.type;
+      orderP.table = $localStorage.user.order.table;
       orderP.namePlate = $localStorage.user.order.plate.name;
 
       pay.sub = $localStorage.user.order.plate.price;
