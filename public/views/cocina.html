@@ -13,7 +13,7 @@
   </div>
   <div class="col-md-12 text-center">
     <div class="row">
-      <span class="h3">Número de pedidos: 2</span>
+      <span class="h3">Número de pedidos: {{orders.length}}</span>
     </div>
 
     <div class="row"><hr></div>
@@ -55,17 +55,17 @@
                       <span class="h5">Total:</span>
                     </div>
                     <div class="col-md-6 text-left">
-                      <span class="h5">{{order.pay.sub| nfcurrency}}</span><br>
-                      <span class="h5">{{order.pay.ser| nfcurrency}}</span><br>
-                      <span class="h5 border-bottom">{{order.pay.iva| nfcurrency}}</span><br>
-                      <span class="h5">{{order.pay.tot| nfcurrency}}</span>
+                      <span class="h5">{{order.pay.sub | nfcurrency}}</span><br>
+                      <span class="h5">{{order.pay.ser | nfcurrency}}</span><br>
+                      <span class="h5 border-bottom">{{order.pay.iva | nfcurrency}}</span><br>
+                      <span class="h5">{{order.pay.tot | nfcurrency}}</span>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="row border-top" ng-show="order.orderOk" style="padding: 15px 0px;">
                 <div class="col-md-4 col-md-offset-4">
-                  <a ng-click="checkIn()" class="btn btn-md btn-block btn-primary">Entregar</a>
+                  <a ng-click="checkIn($index, order)" class="btn btn-md btn-block btn-primary">Entregar</a>
                 </div>
               </div>
             </div>

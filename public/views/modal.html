@@ -28,11 +28,26 @@
           <p class="h4">Tipo de plato:</p>
           <p class="h5 text-uppercase text-primary">{{order.type}}</p>
           <p class="h4">Valor:</p>
-          <p class="h4 text-primary">{{order.total}}</p>
+          <p class="h4 text-primary">{{order.total | nfcurrency}}</p>
           <br>
           <div class="row">
             <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
               <button type="submit" ng-click="disable(order)" class="btn btn-danger btn-block">Cancelar Pedido</button>
+            </div>
+          </div>
+        </div>
+
+        <div ng-if="orderReady">
+          <p class="h4">{{orderReady}}</p>
+          <p class="h5 text-uppercase text-primary">{{order.namePlate}}</p>
+          <p class="h4">Tipo de plato:</p>
+          <p class="h5 text-uppercase text-primary">{{order.type}}</p>
+          <p class="h4">Valor:</p>
+          <p class="h4 text-primary">{{order.total | nfcurrency}}</p>
+          <br>
+          <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
+              <button type="submit" ng-click="disable(order)" class="btn btn-primary btn-block">Aceptar</button>
             </div>
           </div>
         </div>

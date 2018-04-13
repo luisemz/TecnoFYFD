@@ -106,7 +106,7 @@
                 <span class="h4">Total</span>
               </div>
               <div class="col-md-6 col-sm-6 col-xs-6" align="left">
-                <span class="h4">{{orderC.pay.total}}</span>
+                <span class="h4">{{orderC.pay.tot}}</span>
               </div>
             </div>
           </div>
@@ -212,7 +212,7 @@
                 <span class="h4">Total</span>
               </div>
               <div class="col-md-6 col-sm-6 col-xs-6" align="left">
-                <span class="h4">{{orderP.pay.total}}</span>
+                <span class="h4">{{orderP.pay.tot}}</span>
               </div>
             </div>
           </div>
@@ -232,7 +232,7 @@
 
     <div class="row">
       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
-        <a ng-show="!orderOk" ng-click="checkIn()" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Pedir</a>
+        <a ng-show="!orderOk" ng-click="checkIn(pay, name)" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Confirmar</a>
         <br>
         <a ng-click="cancelOrder()" class="btn btn-md btn-primary btn-block" role="button" style="margin-top:5px;">Cancelar</a>
       </div>

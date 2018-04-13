@@ -19,8 +19,9 @@ app.filter('nfcurrency', ['$filter', '$locale', function currency($filter, $loca
 // =========================================================================
 // NAVBAR CONTROLLER =======================================================
 // =========================================================================
-app.controller('mainCtrl', ['$scope', '$http', '$location', '$localStorage',
-'$window', function($scope, $http, $location, $localStorage, $window){
+app.controller('mainCtrl', ['$scope', '$http', '$location', '$localStorage', '$timeout',
+'$window', 'ModalService', function($scope, $http, $location, $localStorage, $timeout,
+$window, ModalService){
 
   if (!$localStorage.saveUser) {
     let userSave = {};
@@ -76,6 +77,42 @@ app.controller('mainCtrl', ['$scope', '$http', '$location', '$localStorage',
     logoutSession($scope, $http, $localStorage, $window);
   }
 
+  $timeout(() => {
+    reload();
+  }, 30000);
+
+  function reload() {
+    getOrder();
+    if (true) {
+      $timeout(() => {
+        reload();
+      }, 30000);
+    }
+  }
+
+  function getOrder () {
+    if (typeof $localStorage.user.order != 'undefined') {
+      if ($localStorage.user.order.checkIn
+          || typeof $localStorage.user.order.pay != 'undefined') {
+        ModalService.showModal({
+          templateUrl: "views/modal.html",
+          controller: "modalCtrl",
+          inputs: {
+            title: "Pedido Listo",
+            account: $localStorage.user.order
+          }
+        }).then(function(modal) {
+          modal.element.modal();
+          modal.close.then(function(result) {
+            if (result.order) {
+              delete $localStorage.user.order;
+              $window.location.reload();
+            }
+          });
+        });
+      }
+    }
+  }
 }]);
 
 // =========================================================================
@@ -444,12 +481,15 @@ $window, $location, ModalService){
       });
       pay.iva = Math.round(pay.sub * 0.19);
       pay.ser = Math.round(pay.sub * 0.15);
-      pay.total = Math.round(pay.sub + pay.iva + pay.ser);
+      pay.tot = Math.round(pay.sub + pay.iva + pay.ser);
+
+      $scope.pay = angular.copy(pay);
+      $scope.name = orderC.namePlate;
       
       pay.sub = moneyFormt(pay.sub);
       pay.iva = moneyFormt(pay.iva);
       pay.ser = moneyFormt(pay.ser);
-      pay.total = moneyFormt(pay.total);
+      pay.tot = moneyFormt(pay.tot);
 
       orderC.pay = pay;
 
@@ -462,20 +502,25 @@ $window, $location, ModalService){
       pay.sub = $localStorage.user.order.plate.price;
       pay.iva = Math.round(pay.sub * 0.19);
       pay.ser = Math.round(pay.sub * 0.15);
-      pay.total = Math.round(pay.sub + pay.iva + pay.ser);
+      pay.tot = Math.round(pay.sub + pay.iva + pay.ser);
+
+      $scope.pay = angular.copy(pay);
+      $scope.name = orderP.namePlate;
 
       pay.sub = moneyFormt(pay.sub);
       pay.iva = moneyFormt(pay.iva);
       pay.ser = moneyFormt(pay.ser);
-      pay.total = moneyFormt(pay.total);
+      pay.tot = moneyFormt(pay.tot);
 
       orderP.pay = pay;
 
       $scope.orderP = orderP;
     }
 
-    $scope.checkIn = function () {
+    $scope.checkIn = function (pay, name) {
       $localStorage.user.order.orderOk = !$localStorage.user.order.orderOk;
+      $localStorage.user.order.pay = pay;
+      $localStorage.user.order.namePlate = name;
       $window.location.reload();
     }
 
@@ -904,68 +949,72 @@ app.controller('cocinaCtrl', ['$scope', '$localStorage', '$rootScope','$timeout'
     }
   }
 
-  function getOrder() { 
+  function getOrder() {
     if (typeof $localStorage.user.order != 'undefined') {
-      let pay = {};
-      let order = {};
-      let ingredients = [];
-      
-      if ($localStorage.user.order.type == 'Crear Plato') {
-        order.type = $localStorage.user.order.type;
-        order.name = $localStorage.user.order.namePlate;
-        order.table = $localStorage.user.order.table;
-        order.orderOk = $localStorage.user.order.orderOk;
-
-        let ingredientP = {};
-        ingredientP.name = 'IngredienteP';
-        ingredientP.price = $localStorage.user.order.ingredientP.price;
-        ingredients.push(ingredientP);
-
-        let ingredientS = {};
-        ingredientS.name = 'IngredienteS';
-        ingredientS.price =$localStorage.user.order.ingredientS.price;
-        ingredients.push(ingredientS);
+      if (!$localStorage.user.order.checkIn) {
+        let pay = {};
+        let order = {};
+        let ingredients = [];
         
-        $localStorage.user.order.ingredientA.forEach(function(ing, i) {
-          let ingredientA = {};
-          ingredientA.name = 'IngredienteA'+(i+1)+'-';
-          ingredientA.price = ing.price;
-          ingredients.push(ingredientA);
-        });
-        order.ingredients = ingredients;
+        if ($localStorage.user.order.type == 'Crear Plato') {
+          order.type = $localStorage.user.order.type;
+          order.name = $localStorage.user.order.namePlate;
+          order.table = $localStorage.user.order.table;
+          order.orderOk = $localStorage.user.order.orderOk;
 
-        pay.sub = 0;
-        ingredients.forEach(ing => {
-          pay.sub += ing.price;
-        })
-        pay.ser = Math.round(pay.sub * 0.15);
-        pay.iva = Math.round(pay.sub * 0.19);
-        pay.tot = Math.round(pay.sub + pay.ser + pay.iva);
-        order.pay = pay;
-      } else if ($localStorage.user.order.type == 'Plato') {
-        order.type = $localStorage.user.order.type;
-        order.name = $localStorage.user.order.plate.name;
-        order.table = $localStorage.user.order.table;
-        order.orderOk = $localStorage.user.order.orderOk;
+          let ingredientP = {};
+          ingredientP.name = 'IngredienteP';
+          ingredientP.price = $localStorage.user.order.ingredientP.price;
+          ingredients.push(ingredientP);
 
-        ingredients.push({name: 'Ingrediente'});
-        ingredients.push({name: 'Ingrediente'});
-        ingredients.push({name: 'Ingrediente'});
-        order.ingredients = ingredients;
+          let ingredientS = {};
+          ingredientS.name = 'IngredienteS';
+          ingredientS.price = $localStorage.user.order.ingredientS.price;
+          ingredients.push(ingredientS);
+          
+          $localStorage.user.order.ingredientA.forEach(function(ing, i) {
+            let ingredientA = {};
+            ingredientA.name = 'IngredienteA'+(i+1)+'-';
+            ingredientA.price = ing.price;
+            ingredients.push(ingredientA);
+          });
+          order.ingredients = ingredients;
+          
+          order.pay = $localStorage.user.order.pay;
+        } else if ($localStorage.user.order.type == 'Plato') {
+          order.type = $localStorage.user.order.type;
+          order.name = $localStorage.user.order.plate.name;
+          order.table = $localStorage.user.order.table;
+          order.orderOk = $localStorage.user.order.orderOk;
 
-        pay.sub = $localStorage.user.order.plate.price;
-        pay.ser = Math.round(pay.sub * 0.15);
-        pay.iva = Math.round(pay.sub * 0.19);
-        pay.tot = Math.round(pay.sub + pay.ser + pay.iva);
-        order.pay = pay;
+          ingredients.push({name: 'Ingrediente'});
+          ingredients.push({name: 'Ingrediente'});
+          ingredients.push({name: 'Ingrediente'});
+          order.ingredients = ingredients;
+
+          order.pay = $localStorage.user.order.pay;
+        }
+
+        $scope.orders[1] = order;
       }
-
-      $scope.orders[1] = order;
     } else {
       delete $scope.orders[1];
       $scope.orders = $scope.orders.filter(or => { return or });
     }
-  };
+  }
+
+  $scope.checkIn = function(index, order) {
+    if (index == 1) {
+      $localStorage.user.order.checkIn = true;
+      $localStorage.user.order.pay = order.pay;
+      $localStorage.user.order.namePlate = order.name;
+      delete $scope.orders[1];
+      $scope.orders = $scope.orders.filter(or => { return or });
+    } else {
+      delete $scope.orders[0];
+      $scope.orders = $scope.orders.filter(or => { return or });
+    }
+  }
 }]);
 
 // =========================================================================
@@ -1027,6 +1076,25 @@ function($scope, $element, title, account, close) {
 
         close({
           reserve: reserve
+        }, 500);
+      }
+    }
+  }
+
+  else if (title === 'Pedido Listo') {
+    $scope.orderReady = "Ya se encuentra listo el pedido:";
+    $scope.order = {};
+    $scope.order.type = account.type;
+    $scope.order.namePlate = account.namePlate;
+    $scope.order.total = account.pay.tot;
+
+    $scope.disable = function(order){
+      if (order) {
+        delete $scope.error;
+        $element.modal('hide');
+
+        close({
+          order: order
         }, 500);
       }
     }
