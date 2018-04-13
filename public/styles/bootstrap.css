@@ -131,6 +131,12 @@
   height: 350px;
   overflow-y: scroll;
 }
+.scrollableContainerCook {
+  border: solid 1px #323232;
+  border-radius: 10px;
+  height: 550px;
+  overflow-y: scroll;
+}
 .scrollableContainer:hover,
 .scrollableContainer:focus {
   border: solid 1px orange;
@@ -5309,6 +5315,13 @@ a.badge:focus {
 .jumbotron-tables {
   margin-bottom: 0px !important;
 }
+.jumbotron-cook {
+  background-color: #323232;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  font-family: 'Pirou Regular';
+  color: #fff;
+}
 .jumbotron-start {
   background-color: #323232;
   padding-top: 10px;
@@ -5316,7 +5329,18 @@ a.badge:focus {
   font-family: 'Pirou Regular';
   color: #fff;
 }
-.jumbotron-start h4 {
+.jumbotron-cook h6,
+.jumbotron-cook h5,
+.jumbotron-cook h4,
+.jumbotron-cook h3,
+.jumbotron-cook h2 {
+  font-family: 'Josefin Slab';
+}
+.jumbotron-start h6,
+.jumbotron-start h5,
+.jumbotron-start h4,
+.jumbotron-start h3,
+.jumbotron-start h2 {
   font-family: 'Josefin Slab';
 }
 .jumbotron h1,

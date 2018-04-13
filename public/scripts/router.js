@@ -160,5 +160,18 @@ angular.module('router', ['ui.router'])
           controller: 'mainCtrl'
         }
       }
+    })
+    .state('cocina',{
+      url: '/cocina',
+      views: {
+        'profile': {
+          templateUrl: 'views/cocina.html',
+          controller: 'cocinaCtrl'
+        },
+        'navbarCocina': {
+          templateUrl: 'views/navbar-cocina.html',
+          controller: 'navbarCocinaCtrl'
+        }
+      }
     });
 });

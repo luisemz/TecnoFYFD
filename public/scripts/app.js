@@ -79,6 +79,14 @@ app.controller('mainCtrl', ['$scope', '$http', '$location', '$localStorage',
 }]);
 
 // =========================================================================
+// NAVBAR COCINA CONTROLLER ================================================
+// =========================================================================
+app.controller('navbarCocinaCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
+'$location', function($scope, $localStorage, $rootScope, $timeout, $location){
+  
+}]);
+
+// =========================================================================
 // RESERVAR CONTROLLER =====================================================
 // =========================================================================
 app.controller('reservarCtrl', ['$scope', '$localStorage', '$rootScope', 
@@ -342,7 +350,7 @@ app.controller('pedirMenuCtrl', ['$scope', '$localStorage', '$rootScope','$timeo
   let order = {};
 
   $scope.plate = [
-    {select: false,name: 'Básico1',price: 90000},
+    {select: false,name: 'Básico1',price: 9000},
     {select: false,name: 'Básico2',price: 8000},
     {select: false,name: 'Básico3',price: 8000},
     {select: false,name: 'Básico4',price: 10000},
@@ -859,6 +867,105 @@ function($scope, $http, $localStorage, $window, ModalService){
       });
     });
   }
+}]);
+
+// =========================================================================
+// COCINA CONTROLLER =======================================================
+// =========================================================================
+app.controller('cocinaCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
+'$location', function($scope, $localStorage, $rootScope, $timeout, $location){
+  $scope.orders = [
+    {
+      type: 'Plato',
+      name: 'Básico1',
+      table: '1',
+      orderOk: true,
+      ingredients: [
+        {name: 'Ingrediente'},
+        {name: 'Ingrediente'}
+      ],
+      pay: {
+        sub: 9000,
+        ser: 1350,
+        iva: 1710,
+        tot: 12060
+      }
+    }
+  ];
+
+  reload();
+
+  function reload() {
+    getOrder();
+    if (true) {
+      $timeout(() => {
+        reload();
+      }, 5000);
+    }
+  }
+
+  function getOrder() { 
+    if (typeof $localStorage.user.order != 'undefined') {
+      let pay = {};
+      let order = {};
+      let ingredients = [];
+      
+      if ($localStorage.user.order.type == 'Crear Plato') {
+        order.type = $localStorage.user.order.type;
+        order.name = $localStorage.user.order.namePlate;
+        order.table = $localStorage.user.order.table;
+        order.orderOk = $localStorage.user.order.orderOk;
+
+        let ingredientP = {};
+        ingredientP.name = 'IngredienteP';
+        ingredientP.price = $localStorage.user.order.ingredientP.price;
+        ingredients.push(ingredientP);
+
+        let ingredientS = {};
+        ingredientS.name = 'IngredienteS';
+        ingredientS.price =$localStorage.user.order.ingredientS.price;
+        ingredients.push(ingredientS);
+        
+        $localStorage.user.order.ingredientA.forEach(function(ing, i) {
+          let ingredientA = {};
+          ingredientA.name = 'IngredienteA'+(i+1)+'-';
+          ingredientA.price = ing.price;
+          ingredients.push(ingredientA);
+        });
+        order.ingredients = ingredients;
+
+        pay.sub = 0;
+        ingredients.forEach(ing => {
+          pay.sub += ing.price;
+        })
+        pay.ser = Math.round(pay.sub * 0.15);
+        pay.iva = Math.round(pay.sub * 0.19);
+        pay.tot = Math.round(pay.sub + pay.ser + pay.iva);
+        order.pay = pay;
+      } else if ($localStorage.user.order.type == 'Plato') {
+        order.type = $localStorage.user.order.type;
+        order.name = $localStorage.user.order.plate.name;
+        order.table = $localStorage.user.order.table;
+        order.orderOk = $localStorage.user.order.orderOk;
+
+        ingredients.push({name: 'Ingrediente'});
+        ingredients.push({name: 'Ingrediente'});
+        ingredients.push({name: 'Ingrediente'});
+        order.ingredients = ingredients;
+
+        pay.sub = $localStorage.user.order.plate.price;
+        pay.ser = Math.round(pay.sub * 0.15);
+        pay.iva = Math.round(pay.sub * 0.19);
+        pay.tot = Math.round(pay.sub + pay.ser + pay.iva);
+        order.pay = pay;
+      }
+
+      $scope.orders[1] = order;
+    } else {
+      delete $scope.orders[1];
+      $scope.orders = $scope.orders.filter(or => { return or });
+    }
+  };
 }]);
 
 // =========================================================================
