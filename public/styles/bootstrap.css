@@ -3348,20 +3348,20 @@ fieldset[disabled] .btn-default.focus {
 .btn-facebook.focus {
   color: #fff;
   /*background-color: #286090;*/
-  background-color: #8b9dc3;
-  border-color: #8b9dc3;
+  background-color: #4080FF;
+  border-color: #4080FF;
 }
 .btn-facebook:hover {
   color: #fff;
-  background-color: #8b9dc3;
-  border-color: #8b9dc3;
+  background-color: #4080FF;
+  border-color: #4080FF;
 }
 .btn-facebook:active,
 .btn-facebook.active,
 .open > .dropdown-toggle.btn-facebook {
   color: #fff;
-  background-color: #8b9dc3;
-  border-color: #8b9dc3;
+  background-color: #4080FF;
+  border-color: #4080FF;
 }
 .btn-facebook:active:hover,
 .btn-facebook.active:hover,
@@ -3373,8 +3373,8 @@ fieldset[disabled] .btn-default.focus {
 .btn-facebook.active.focus,
 .open > .dropdown-toggle.btn-facebook.focus {
   color: #fff;
-  background-color: #8b9dc3;
-  border-color: #8b9dc3;
+  background-color: #4080FF;
+  border-color: #4080FF;
 }
 .btn-facebook:active,
 .btn-facebook.active,
@@ -3390,68 +3390,68 @@ fieldset[disabled] .btn-facebook:focus,
 .btn-facebook.disabled.focus,
 .btn-facebook[disabled].focus,
 fieldset[disabled] .btn-facebook.focus {
-  background-color: #8b9dc3;
+  background-color: #4080FF;
   border-color: #01BAEF;
 }
 .btn-facebook .badge {
   color: #337ab7;
   background-color: #fff;
 }
-.btn-google {
+.btn-instagram {
   color: #fff;
   background-color: #d9534f;
   border-color: #d9534f;
 }
-.btn-google:focus,
-.btn-google.focus {
+.btn-instagram:focus,
+.btn-instagram.focus {
   color: #fff;
   /*background-color: #286090;*/
   background-color: #d62d20;
   border-color: #d62d20;
 }
-.btn-google:hover {
+.btn-instagram:hover {
   color: #fff;
   background-color: #d62d20;
   border-color: #d62d20;
 }
-.btn-google:active,
-.btn-google.active,
-.open > .dropdown-toggle.btn-google {
+.btn-instagram:active,
+.btn-instagram.active,
+.open > .dropdown-toggle.btn-instagram {
   color: #fff;
   background-color: #d62d20;
   border-color: #d62d20;
 }
-.btn-google:active:hover,
-.btn-google.active:hover,
-.open > .dropdown-toggle.btn-google:hover,
-.btn-google:active:focus,
-.btn-google.active:focus,
-.open > .dropdown-toggle.btn-google:focus,
-.btn-google:active.focus,
-.btn-google.active.focus,
-.open > .dropdown-toggle.btn-google.focus {
+.btn-instagram:active:hover,
+.btn-instagram.active:hover,
+.open > .dropdown-toggle.btn-instagram:hover,
+.btn-instagram:active:focus,
+.btn-instagram.active:focus,
+.open > .dropdown-toggle.btn-instagram:focus,
+.btn-instagram:active.focus,
+.btn-instagram.active.focus,
+.open > .dropdown-toggle.btn-instagram.focus {
   color: #fff;
   background-color: #d62d20;
   border-color: #d62d20;
 }
-.btn-google:active,
-.btn-google.active,
-.open > .dropdown-toggle.btn-google {
+.btn-instagram:active,
+.btn-instagram.active,
+.open > .dropdown-toggle.btn-instagram {
   background-image: none;
 }
-.btn-google.disabled:hover,
-.btn-google[disabled]:hover,
-fieldset[disabled] .btn-google:hover,
-.btn-google.disabled:focus,
-.btn-google[disabled]:focus,
-fieldset[disabled] .btn-google:focus,
-.btn-google.disabled.focus,
-.btn-google[disabled].focus,
-fieldset[disabled] .btn-google.focus {
+.btn-instagram.disabled:hover,
+.btn-instagram[disabled]:hover,
+fieldset[disabled] .btn-instagram:hover,
+.btn-instagram.disabled:focus,
+.btn-instagram[disabled]:focus,
+fieldset[disabled] .btn-instagram:focus,
+.btn-instagram.disabled.focus,
+.btn-instagram[disabled].focus,
+fieldset[disabled] .btn-instagram.focus {
   background-color: #d62d20;
   border-color: #d62d20;
 }
-.btn-google .badge {
+.btn-instagram .badge {
   color: #337ab7;
   background-color: #fff;
 } /*  ---  */

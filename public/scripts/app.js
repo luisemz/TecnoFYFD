@@ -559,12 +559,10 @@ $window, $location, ModalService){
 app.controller('calificarCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
 function($scope, $localStorage, $rootScope, $timeout){
   $scope.plates = [
-    {name: 'Dorado', score: '4.1'},
-    {name: 'Dreamer', score: '4.5'},
-    {name: 'Chancho', score: '3.5'},
-    {name: 'Pillelo', score: '3.8'},
-    {name: 'JogoBonito', score: '4.5'},
-    {name: 'Fulles', score: '4.0'},
+    {name: 'Baguetton', score: '4.1'},
+    {name: 'TecnoBurger', score: '4.5'},
+    {name: 'Pizza Estofada', score: '3.8'},
+    {name: 'Dreamer', score: '4.0'},
     {name: 'Love', score: '4.3'},
     {name: 'Hungry', score: '3.9'}
   ];
@@ -763,7 +761,7 @@ function($scope, $http, $localStorage, $window){
 
   };
 
-  $scope.google = function() {
+  $scope.instagram = function() {
 
   };
 
