@@ -557,7 +557,7 @@ $window, $location, ModalService){
 // CALIFICAR CONTROLLER ====================================================
 // =========================================================================
 app.controller('calificarCtrl', ['$scope', '$localStorage', '$rootScope','$timeout',
-function($scope, $localStorage, $rootScope, $timeout){
+'ModalService', function($scope, $localStorage, $rootScope, $timeout, ModalService){
   $scope.plates = [
     {name: 'Baguetton', score: '4.1'},
     {name: 'TecnoBurger', score: '4.5'},
@@ -567,31 +567,50 @@ function($scope, $localStorage, $rootScope, $timeout){
     {name: 'Hungry', score: '3.9'}
   ];
 
-  $scope.addScore = function (stars, index) {
-    var i;
-    for (i = 0; i < $scope.plates.length ; i++) {
-      let auxCont = document.getElementById("starts"+i);
-      if (angular.element(auxCont).hasClass("scoreSelect")) {
-        angular.element(auxCont).removeClass("scoreSelect");
+  $scope.addScore = function (stars, index, plate) {
+    if (!plate.disabled) {
+      var i;
+      for (i = 0; i < $scope.plates.length ; i++) {
+        let auxCont = document.getElementById("starts"+i);
+        if (angular.element(auxCont).hasClass("scoreSelect")) {
+          angular.element(auxCont).removeClass("scoreSelect");
+        }
       }
-    }
 
-    var j;
-    for (j = 1; j <= 5; j++) {
-      let auxStar = document.getElementById("start"+j+"-"+index);
-      if (angular.element(auxStar).hasClass("fa-star")) {
-        angular.element(auxStar).removeClass("fa-star").addClass("fa-star-o");
+      var j;
+      for (j = 1; j <= 5; j++) {
+        let auxStar = document.getElementById("start"+j+"-"+index);
+        if (angular.element(auxStar).hasClass("fa-star")) {
+          angular.element(auxStar).removeClass("fa-star").addClass("fa-star-o");
+        }
       }
-    }
 
-    var k;
-    for (k = 1; k <= stars; k++) {
-      let star = document.getElementById("start"+k+"-"+index);
-      angular.element(star).removeClass("fa-star-o").addClass("fa-star");
-    }
+      var k;
+      for (k = 1; k <= stars; k++) {
+        let star = document.getElementById("start"+k+"-"+index);
+        angular.element(star).removeClass("fa-star-o").addClass("fa-star");
+      }
 
-    let starContainer = document.getElementById("starts"+index);
-    angular.element(starContainer).addClass("scoreSelect");
+      let starContainer = document.getElementById("starts"+index);
+      angular.element(starContainer).addClass("scoreSelect");
+
+      plate.numStars = stars;
+      ModalService.showModal({
+        templateUrl: "views/modal.html",
+        controller: "modalCtrl",
+        inputs: {
+          title: "Calificar Plato",
+          account: plate
+        }
+      }).then(function(modal) {
+        modal.element.modal();
+        modal.close.then(function(result) {
+          if (result.plate) {
+            plate.disabled = true;
+          }
+        });
+      });
+    }
   }
 }]);
 
@@ -1093,6 +1112,28 @@ function($scope, $element, title, account, close) {
 
         close({
           order: order
+        }, 500);
+      }
+    }
+  }
+
+  else if (title === 'Calificar Plato') {
+    let stars = [];
+    for (var i = 0; i < account.numStars; i++) {
+      stars.push('star-'+i);
+    }
+    $scope.score = "Plato:";
+    $scope.plate = {};
+    $scope.plate.name = account.name;
+    $scope.plate.stars = stars;
+
+    $scope.disable = function(plate){
+      if (plate) {
+        delete $scope.error;
+        $element.modal('hide');
+
+        close({
+          plate: plate
         }, 500);
       }
     }

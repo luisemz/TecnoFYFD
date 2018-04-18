@@ -67,6 +67,23 @@
           </div>
         </div>
 
+        <div ng-if="score">
+          <p class="h4">{{score}}</p>
+          <p class="h4 text-uppercase text-primary">{{plate.name}}</p>
+          <span class="h3">
+            <span class="fa fa-star" id="{{$index}}" ng-repeat="star in plate.stars"></span>
+          </span>
+          <br>
+          <br>
+          <textarea class="form-control" rows="4" cols="50" placeholder="Añade un comentario..." ng-model="plate.commet"></textarea>
+          <br>
+          <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
+              <button type="submit" ng-click="disable(plate)" class="btn btn-primary btn-block">Calificar</button>
+            </div>
+          </div>
+        </div>
+
         <div ng-if="error"><hr></div>
         <div class="alert alert-danger" ng-if="error">
           {{error}}
